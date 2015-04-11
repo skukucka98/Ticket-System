@@ -3,6 +3,7 @@ To pull code from the repository, enter this into the command line:
 git pull origin master
 
 To commit and push your changes to the repository, follow these steps:
+
 1. git status
 //this will show all the files you have changed in red.
 
