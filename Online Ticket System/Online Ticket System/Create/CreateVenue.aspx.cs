@@ -47,7 +47,7 @@ namespace Online_Ticket_System.Create
             }
             else if (!int.TryParse(txtTotalSeat.Text, out n))
             {
-                lbSeatOutput.Text = "Invalid Seat Total.";
+                lbSeatOutput.Text = "Invalid total seat.";
             }
             else
             {
@@ -133,7 +133,7 @@ namespace Online_Ticket_System.Create
         {
             if (Session["Mytable"] == null)
             {
-                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('This venue does not contain any sections. Please add a section and try again.')", true);
+                this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('The Venue do not contain any section. Please add section and try it again.')", true);
             }
             else
             {
@@ -156,7 +156,7 @@ namespace Online_Ticket_System.Create
                 }
                 else if (mytable.Rows.Count == 0)
                 {
-                    this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('The venue does not contain any sections. Please add a section and try it again.')", true);
+                    this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('The Venue do not contain any section. Please Add more section and try it again.')", true);
                 }
                 else
                 {
@@ -209,7 +209,7 @@ namespace Online_Ticket_System.Create
 
                         venueOutput.Visible = true;
                         lbSeatOutput.Text = "";
-                        venueOutput.Text = "The venue was uploaded successfully.";
+                        venueOutput.Text = "The Venue was upload successfully.";
                         venueOutput.ForeColor = Color.Blue;
                         ClearVenueFields();
                         GridView1.DataBind();
@@ -217,7 +217,7 @@ namespace Online_Ticket_System.Create
                     }
                     catch (Exception exe)
                     {
-                        venueOutput.Text = "The venue failed to upload.";
+                        venueOutput.Text = "the Venue was failed to upload.";
                         venueOutput.ForeColor = Color.Red;
                         venueOutput.Visible = true;
                         vengrid.Visible = true;

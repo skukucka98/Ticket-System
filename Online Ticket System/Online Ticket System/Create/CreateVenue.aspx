@@ -15,7 +15,7 @@
                             <tr>
                                 <td style="width: 200px; text-align: right">Venue Name:</td>
                                 <td style="width: 495px">
-                                    <asp:TextBox ID="txtvenueName" runat="server" Width="330px" ValidationGroup="AddVenue" Height="24px" CssClass="CRVBox" title="Venue Name"></asp:TextBox>
+                                    <asp:TextBox ID="txtvenueName" runat="server" Width="330px" ValidationGroup="AddVenue" Height="24px" CssClass="CRVBox"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="txtvenueName" ErrorMessage="*" ValidationGroup="AddVenue" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
@@ -23,7 +23,7 @@
                             <tr>
                                 <td style="width: 200px; text-align: right">Address 1:</td>
                                 <td style="width: 495px">
-                                    <asp:TextBox ID="txtaddress1" runat="server" Width="330px" ValidationGroup="AddVenue" CssClass="CRVBox" title="Address 1"></asp:TextBox>
+                                    <asp:TextBox ID="txtaddress1" runat="server" Width="330px" ValidationGroup="AddVenue" CssClass="CRVBox"></asp:TextBox>
 
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="txtaddress1" ErrorMessage="*" ValidationGroup="AddVenue" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </td>
@@ -32,7 +32,7 @@
                             <tr>
                                 <td style="width: 200px; text-align: right">Address 2:</td>
                                 <td style="width: 495px">
-                                    <asp:TextBox ID="txtaddress2" runat="server" Width="330px" ValidationGroup="AddVenue" CssClass="CRVBox" title="Address 2"></asp:TextBox>
+                                    <asp:TextBox ID="txtaddress2" runat="server" Width="330px" ValidationGroup="AddVenue" CssClass="CRVBox"></asp:TextBox>
 
                                 </td>
                             </tr>
@@ -40,7 +40,7 @@
                             <tr>
                                 <td style="width: 200px; text-align: right">City:</td>
                                 <td style="width: 495px">
-                                    <asp:TextBox ID="txtCity" runat="server" Width="330px" ValidationGroup="AddVenue" CssClass="CRVBox" title="City"></asp:TextBox>
+                                    <asp:TextBox ID="txtCity" runat="server" Width="330px" ValidationGroup="AddVenue" CssClass="CRVBox"></asp:TextBox>
 
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="txtCity" ErrorMessage="*" ValidationGroup="AddVenue" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </td>
@@ -49,7 +49,7 @@
                             <tr>
                                 <td style="width: 200px; text-align: right">State:</td>
                                 <td style="width: 495px">
-                                    <asp:DropDownList ID="txtState" runat="server" CssClass="CRVDrDown" Width="335px" title="State">
+                                    <asp:DropDownList ID="txtState" runat="server" CssClass="CRVDrDown" Width="335px">
                                         <asp:ListItem Value="AL">Alabama</asp:ListItem>
                                         <asp:ListItem Value="AK">Alaska</asp:ListItem>
                                         <asp:ListItem Value="AZ">Arizona</asp:ListItem>
@@ -115,7 +115,7 @@
                             <tr>
                                 <td style="width: 200px; text-align: right">Zip Code:</td>
                                 <td style="width: 495px">
-                                    <asp:TextBox ID="txtZip" runat="server" Width="330px" ValidationGroup="AddVenue" CssClass="CRVBox" TextMode="Number" title="Zip Code"></asp:TextBox>
+                                    <asp:TextBox ID="txtZip" runat="server" Width="330px" ValidationGroup="AddVenue" CssClass="CRVBox" TextMode="Number"></asp:TextBox>
 
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtZip" ErrorMessage="*" ValidationGroup="AddVenue" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </td>
@@ -132,15 +132,15 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <asp:TextBox ID="txtSeatSection" runat="server" Width="109px" ValidationGroup="AddSSection" CssClass="CRVBox" TextMode="Number" title="Section Number"></asp:TextBox>
+                                                <asp:TextBox ID="txtSeatSection" runat="server" Width="109px" ValidationGroup="AddSSection" CssClass="CRVBox" TextMode="Number"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ControlToValidate="txtSeatSection" ErrorMessage="*" ValidationGroup="AddSSection" ForeColor="Red"></asp:RequiredFieldValidator>
                                             </td>
                                             <td>
-                                                <asp:TextBox ID="txtTotalSeat" runat="server" Width="109px" ValidationGroup="AddSSection" CssClass="CrSmalBox" TextMode="Number" title="Total Seats"></asp:TextBox>
+                                                <asp:TextBox ID="txtTotalSeat" runat="server" Width="109px" ValidationGroup="AddSSection" CssClass="CrSmalBox" TextMode="Number"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txtTotalSeat" ErrorMessage="*" ValidationGroup="AddSSection" ForeColor="Red"></asp:RequiredFieldValidator>
                                             </td>
                                             <td>
-                                                <asp:Button ID="AddSeat" runat="server" Text="Add" OnClick="AddSeat_Click" ValidationGroup="AddSSection" CssClass="CRVButt" Height="35px" title="Add Seat Section" />
+                                                <asp:Button ID="AddSeat" runat="server" Text="Add" OnClick="AddSeat_Click" ValidationGroup="AddSSection" CssClass="CRVButt" Height="35px" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -188,7 +188,7 @@
                             <tr>
                                 <td style="width: 200px; text-align: right">Description: </td>
                                 <td style="width: 495px">
-                                    <asp:TextBox ID="txtvenueDescription" runat="server" Width="330px" ValidationGroup="AddVenue" CssClass="CRVBox" TextMode="MultiLine" Height="100px" title="Description"></asp:TextBox>
+                                    <asp:TextBox ID="txtvenueDescription" runat="server" Width="330px" ValidationGroup="AddVenue" CssClass="CRVBox" TextMode="MultiLine" Height="100px"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -201,7 +201,7 @@
                             <tr>
                                 <td></td>
                                 <td style="margin-top: 10px;">
-                                    <asp:Button ID="venueSave" runat="server" OnClick="venueSave_Click" Text="Save" ValidationGroup="AddVenue" CssClass="CRVButt" Width="100px" Height="35px" title="Save Venue"/></td>
+                                    <asp:Button ID="venueSave" runat="server" OnClick="venueSave_Click" Text="Save" ValidationGroup="AddVenue" CssClass="CRVButt" Width="100px" Height="35px" /></td>
                             </tr>
 
                         </table>
@@ -233,7 +233,7 @@
                                             <ItemStyle Width="100px" />
                                         </asp:BoundField>
                                         <asp:BoundField DataField="ZipCode" HeaderText="ZipCode" SortExpression="ZipCode" />
-                                        <asp:CommandField ButtonType="Button" HeaderText="View" ShowHeader="True" ShowSelectButton="True" SelectText="Details" ControlStyle-CssClass="btnstandard" ControlStyle-Width="80px" ControlStyle-Height="35px"/>
+                                        <asp:CommandField ButtonType="Button" HeaderText="View" ShowHeader="True" ShowSelectButton="True" SelectText="Detail" ControlStyle-CssClass="btnstandard" ControlStyle-Width="80px" ControlStyle-Height="35px" />
                                     </Columns>
                                     <EditRowStyle BackColor="#7C6F57" />
                                     <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
@@ -253,11 +253,11 @@
                             <h3 style="text-decoration: underline">Venue Detail</h3>
                             <asp:DetailsView ID="VenDetail" runat="server" Height="50px" Width="694px" AutoGenerateRows="False" DataSourceID="SqlDataSource2" BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Horizontal" DataKeyNames="VenueID" OnItemUpdated="VenDetail_ItemUpdated" OnItemDeleted="VenDetail_ItemDeleted">
                                 <AlternatingRowStyle BackColor="#F7F7F7" />
-                                <EditRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" />
+                                <EditRowStyle BackColor="#f1f3f5" Font-Bold="True" ForeColor="Black" />
                                 <Fields>
                                     <asp:TemplateField HeaderText="Name" SortExpression="Name">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Name") %>' CssClass="btnstandard" Width="300px" Height="30px" title="Venue Name"></asp:TextBox>
+                                            <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Name") %>' CssClass="btnstandard" Width="300px" Height="30px"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="TextBox5"></asp:RequiredFieldValidator>
                                         </EditItemTemplate>
                                         <InsertItemTemplate>
@@ -268,9 +268,9 @@
                                         </ItemTemplate>
                                         <%--<ControlStyle CssClass="btnstandard" Height="30px" Width="300px" />--%>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Address 1" SortExpression="Address1">
+                                    <asp:TemplateField HeaderText="Address1" SortExpression="Address1">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Address1") %>' CssClass="btnstandard" Width="300px" Height="30px" title="Address 1"></asp:TextBox>
+                                            <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Address1") %>' CssClass="btnstandard" Width="300px" Height="30px"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="TextBox6"></asp:RequiredFieldValidator>
                                         </EditItemTemplate>
                                         <InsertItemTemplate>
@@ -281,12 +281,12 @@
                                         </ItemTemplate>
                                         <%--<ControlStyle CssClass="btnstandard" Height="30px" Width="300px" />--%>
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="Address2" HeaderText="Address 2" SortExpression="Address2" ControlStyle-CssClass="btnstandard" ControlStyle-Width="300px" ControlStyle-Height="30px">
+                                    <asp:BoundField DataField="Address2" HeaderText="Address2" SortExpression="Address2" ControlStyle-CssClass="btnstandard" ControlStyle-Width="300px" ControlStyle-Height="30px">
                                         <ControlStyle CssClass="btnstandard" />
                                     </asp:BoundField>
                                     <asp:TemplateField HeaderText="City" SortExpression="City">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("City") %>' CssClass="btnstandard" Width="300px" Height="30px" title="City"></asp:TextBox>
+                                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("City") %>' CssClass="btnstandard" Width="300px" Height="30px"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="TextBox2"></asp:RequiredFieldValidator>
                                             <asp:CustomValidator ID="CustomValidator1" runat="server"
                                                 ErrorMessage="Invalid City"
@@ -296,7 +296,7 @@
 
                                         </EditItemTemplate>
                                         <InsertItemTemplate>
-                                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("City") %>' title="City"></asp:TextBox>
+                                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("City") %>'></asp:TextBox>
                                         </InsertItemTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="Label2" runat="server" Text='<%# Bind("City") %>'></asp:Label>
@@ -304,7 +304,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="State" SortExpression="State">
                                         <EditItemTemplate>
-                                            <asp:DropDownList ID="TextBox1" runat="server" SelectedValue='<%# Bind("State") %>' Width="303px" Height="30px" CssClass="btnstandard" title="State">
+                                            <asp:DropDownList ID="TextBox1" runat="server" SelectedValue='<%# Bind("State") %>' Width="303px" Height="30px" CssClass="btnstandard">
                                                 <asp:ListItem Value="AL">Alabama</asp:ListItem>
                                                 <asp:ListItem Value="AK">Alaska</asp:ListItem>
                                                 <asp:ListItem Value="AZ">Arizona</asp:ListItem>
@@ -364,12 +364,12 @@
                                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("State") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Zip Code" SortExpression="ZipCode">
+                                    <asp:TemplateField HeaderText="ZipCode" SortExpression="ZipCode">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("ZipCode") %>' CssClass="btnstandard" Width="300px" Height="30px" title="Zip Code"></asp:TextBox>
+                                            <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("ZipCode") %>' CssClass="btnstandard" Width="300px" Height="30px"></asp:TextBox>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="TextBox3"></asp:RequiredFieldValidator>
                                             <asp:CustomValidator ID="CustomValidator" runat="server"
-                                                ErrorMessage="Invalid Zip Code"
+                                                ErrorMessage="Invalid Zipcode"
                                                 ControlToValidate="TextBox3"
                                                 ForeColor="Red"
                                                 OnServerValidate="CustomValidator_ServerValidate"></asp:CustomValidator>
@@ -394,12 +394,12 @@
                                                     </asp:BoundField>
                                                     <asp:TemplateField HeaderText="Manage" ShowHeader="False" ItemStyle-HorizontalAlign="Center">
                                                         <EditItemTemplate>
-                                                            <asp:Button ID="Button1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="C_PTButt" BackColor="Green" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to update this venue?')" title="Update"/>
-                                                            <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="C_PTButt" title="Cancel"/>
+                                                            <asp:Button ID="Button1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="C_PTButt" BackColor="Green" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to update this venue?')" />
+                                                            <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="C_PTButt" />
                                                         </EditItemTemplate>
                                                         <ItemTemplate>
-                                                            <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="C_PTButt" BackColor="#33ccff" ForeColor="White" title="Edit"/>
-                                                            <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="C_PTButt" BackColor="Red" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to permanently delete this venue?')" title="Delete"/>
+                                                            <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="C_PTButt" BackColor="#33ccff" ForeColor="White" />
+                                                            <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="C_PTButt" BackColor="Red" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to permanently delete this venue?')" />
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:TemplateField>
@@ -432,7 +432,7 @@
                                                     <asp:BoundField DataField="Section" HeaderText="Section" SortExpression="Section" ItemStyle-HorizontalAlign="Center">
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:BoundField>
-                                                    <asp:BoundField DataField="SeatTotal" HeaderText="Seat Total" SortExpression="SeatTotal" ItemStyle-HorizontalAlign="Center">
+                                                    <asp:BoundField DataField="SeatTotal" HeaderText="SeatTotal" SortExpression="SeatTotal" ItemStyle-HorizontalAlign="Center">
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:BoundField>
                                                 </Columns>
@@ -458,12 +458,12 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="SeatDiagram" HeaderText="Seat Diagram" SortExpression="SeatDiagram" ControlStyle-CssClass="btnstandard" ControlStyle-Width="300px" ControlStyle-Height="30px">
+                                    <asp:BoundField DataField="SeatDiagram" HeaderText="SeatDiagram" SortExpression="SeatDiagram" ControlStyle-CssClass="btnstandard" ControlStyle-Width="300px" ControlStyle-Height="30px">
                                         <ControlStyle CssClass="btnstandard" />
                                     </asp:BoundField>
                                     <asp:TemplateField HeaderText="Description" SortExpression="Description">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Description") %>' TextMode="MultiLine" Height="200px" Width="500px" title="Description"></asp:TextBox>
+                                            <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Description") %>' TextMode="MultiLine" Height="200px" Width="500px"></asp:TextBox>
                                         </EditItemTemplate>
                                         <InsertItemTemplate>
                                             <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Description") %>'></asp:TextBox>
@@ -475,12 +475,12 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField ShowHeader="False">
                                         <EditItemTemplate>
-                                            <asp:Button ID="Button1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="C_PTButt" BackColor="Green" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to update this venue?')" OnClick="Page_Load" title="Update Venue"/>
-                                            &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="C_PTButt" title="Cancel"/>
+                                            <asp:Button ID="Button1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="C_PTButt" BackColor="Green" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to update this venue?')" OnClick="Page_Load" />
+                                            &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="C_PTButt" />
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="C_PTButt" BackColor="#33ccff" ForeColor="White" title="Edit Venue"/>
-                                            &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="C_PTButt" BackColor="Red" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to permanently delete this venue?')" title="Delete Venue"/>
+                                            <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="C_PTButt" BackColor="#33ccff" ForeColor="White" />
+                                            &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="C_PTButt" BackColor="Red" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to permanently delete this venue?')" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Fields>
