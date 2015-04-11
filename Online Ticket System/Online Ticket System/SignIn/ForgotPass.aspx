@@ -19,7 +19,7 @@
                                 </td>
                                 <td id="rgpa4">
                                     <div>
-                                        <asp:TextBox ID="FGPaUsername" runat="server" CssClass="FGPaBox" ValidationGroup="reset"></asp:TextBox>
+                                        <asp:TextBox ID="FGPaUsername" runat="server" CssClass="FGPaBox" ValidationGroup="reset" ToolTip="Enter Username"></asp:TextBox>
                                     </div>
                                 </td>
                                 <td>
@@ -34,7 +34,7 @@
                                 </td>
                                 <td id="fgpa2">
                                     <div>
-                                        <asp:TextBox ID="FGPaEmail" runat="server" CssClass="FGPaBox" ValidationGroup="reset"></asp:TextBox>
+                                        <asp:TextBox ID="FGPaEmail" runat="server" CssClass="FGPaBox" ValidationGroup="reset" ToolTip="Enter Email"></asp:TextBox>
                                     </div>
                                 </td>
                                 <td>

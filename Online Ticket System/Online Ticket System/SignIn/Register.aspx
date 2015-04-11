@@ -23,7 +23,7 @@
                                         <td id="id3">Username:</td>
                                         <td>
                                             <div style="margin-bottom: 1px;">
-                                                <asp:TextBox ID="UsernameReg" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup"></asp:TextBox>
+                                                <asp:TextBox ID="UsernameReg" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup" ToolTip="Enter User Name 8-15 charater"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RegUsernameValidator" runat="server" ErrorMessage="*" ControlToValidate="UsernameReg" ForeColor="#FF0066" ValidationGroup="RegisterGroup"></asp:RequiredFieldValidator>
                                             </div>
                                         </td>
@@ -43,7 +43,7 @@
                                         <td id="id4">Password:</td>
                                         <td>
                                             <div>
-                                                <asp:TextBox ID="PasswordReg" runat="server" CssClass="RegBox" TextMode="Password" ValidationGroup="RegisterGroup"></asp:TextBox>
+                                                <asp:TextBox ID="PasswordReg" runat="server" CssClass="RegBox" TextMode="Password" ValidationGroup="RegisterGroup" ToolTip="Enter Password With Atleast One Uppercase Letter"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RegPasswordValidator" runat="server" ErrorMessage="*" ForeColor="#FF0066" ControlToValidate="PasswordReg" ValidationGroup="RegisterGroup"></asp:RequiredFieldValidator>
                                             </div>
                                         </td>
@@ -57,7 +57,7 @@
                                         <td id="id5">Re-Enter Password:</td>
                                         <td>
                                             <div>
-                                                <asp:TextBox ID="ReEnterPasswordBox" runat="server" CssClass="RegBox" TextMode="Password" ValidationGroup="RegisterGroup"></asp:TextBox>
+                                                <asp:TextBox ID="ReEnterPasswordBox" runat="server" CssClass="RegBox" TextMode="Password" ValidationGroup="RegisterGroup" ToolTip="Re-Enter Password"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="ReEnterPasswordValidator" runat="server" ErrorMessage="*" ControlToValidate="ReEnterPasswordBox" ForeColor="#FF0066" ValidationGroup="RegisterGroup"></asp:RequiredFieldValidator>
                                             </div>
                                         </td>
@@ -69,7 +69,7 @@
                                         <td id="id6">First name:</td>
                                         <td>
                                             <div>
-                                                <asp:TextBox ID="FirstnameBox" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup"></asp:TextBox>
+                                                <asp:TextBox ID="FirstnameBox" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup" ToolTip="Enter First Name"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="LastnameValidator" runat="server" ErrorMessage="*" ControlToValidate="LastnameBox" ForeColor="#FF0066" ValidationGroup="RegisterGroup"></asp:RequiredFieldValidator>
                                             </div>
                                         </td>
@@ -79,7 +79,7 @@
                                         <td>
                                             <div>
 
-                                                <asp:TextBox ID="LastnameBox" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup"></asp:TextBox>
+                                                <asp:TextBox ID="LastnameBox" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup" ToolTip="Enter Last Name"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="FirstnameValidator" runat="server" ControlToValidate="FirstnameBox" ErrorMessage="*" ForeColor="#FF0066" ValidationGroup="RegisterGroup"></asp:RequiredFieldValidator>
                                                 <br />
                                             </div>
@@ -90,7 +90,7 @@
                                         <td id="id8">Address1:</td>
                                         <td>
                                             <div>
-                                                <asp:TextBox ID="Address1Box" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup"></asp:TextBox>
+                                                <asp:TextBox ID="Address1Box" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup" ToolTip="Enter Valid Address"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="Address1Validator" runat="server" ErrorMessage="*" ControlToValidate="Address1Box" ForeColor="#FF0066" ValidationGroup="RegisterGroup"></asp:RequiredFieldValidator>
                                             </div>
                                         </td>
@@ -100,7 +100,7 @@
                                         <td id="id9">Address2:</td>
                                         <td>
                                             <div>
-                                            <asp:TextBox ID="Address2Box" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup"></asp:TextBox>
+                                            <asp:TextBox ID="Address2Box" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup" ToolTip="Enter Valid Address 2"></asp:TextBox>
                                             </div>
                                         </td>
                                     </tr>
@@ -108,7 +108,7 @@
                                         <td id="id10">City:</td>
                                         <td>
                                             <div>
-                                                <asp:TextBox ID="CityBox" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup"></asp:TextBox><asp:RequiredFieldValidator ID="CityValidator" runat="server" ErrorMessage="*" ControlToValidate="CityBox" ForeColor="#FF0066" ValidationGroup="RegisterGroup"></asp:RequiredFieldValidator>
+                                                <asp:TextBox ID="CityBox" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup" ToolTip="Enter Valid City"></asp:TextBox><asp:RequiredFieldValidator ID="CityValidator" runat="server" ErrorMessage="*" ControlToValidate="CityBox" ForeColor="#FF0066" ValidationGroup="RegisterGroup"></asp:RequiredFieldValidator>
                                             </div>
                                         </td>
                                         <td></td>
@@ -117,7 +117,7 @@
                                         <td id="id11">State:</td>
                                         <td>
                                             <div>
-                                                <asp:DropDownList ID="StateBox" runat="server" CssClass="RegDRList">
+                                                <asp:DropDownList ID="StateBox" runat="server" CssClass="RegDRList" ToolTip="Select State">
                                                     <asp:ListItem Value="AL">Alabama</asp:ListItem>
                                                     <asp:ListItem Value="AK">Alaska</asp:ListItem>
                                                     <asp:ListItem Value="AZ">Arizona</asp:ListItem>
@@ -187,7 +187,7 @@
                                         <td id="id12">ZipCode:</td>
                                         <td>
                                             <div>
-                                                <asp:TextBox ID="ZipcodeBox" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup"></asp:TextBox><asp:RequiredFieldValidator ID="ZipcodeValidator" runat="server" ErrorMessage="*" ControlToValidate="ZipcodeBox" ForeColor="#FF0066" ValidationGroup="RegisterGroup"></asp:RequiredFieldValidator>
+                                                <asp:TextBox ID="ZipcodeBox" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup" ToolTip="Enter Valid Zip Code"></asp:TextBox><asp:RequiredFieldValidator ID="ZipcodeValidator" runat="server" ErrorMessage="*" ControlToValidate="ZipcodeBox" ForeColor="#FF0066" ValidationGroup="RegisterGroup"></asp:RequiredFieldValidator>
                                             </div>
                                         </td>
                                         <td></td>
@@ -196,7 +196,7 @@
                                         <td id="id13">Phone Number:</td>
                                         <td>
                                             <div>
-                                                <asp:TextBox ID="PhoneBox" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup"></asp:TextBox><asp:RequiredFieldValidator ID="PhoneValidator" runat="server" ErrorMessage="*" ControlToValidate="PhoneBox" ForeColor="#FF0066" ValidationGroup="RegisterGroup"></asp:RequiredFieldValidator>
+                                                <asp:TextBox ID="PhoneBox" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup" ToolTip="Enter Phone Number"></asp:TextBox><asp:RequiredFieldValidator ID="PhoneValidator" runat="server" ErrorMessage="*" ControlToValidate="PhoneBox" ForeColor="#FF0066" ValidationGroup="RegisterGroup"></asp:RequiredFieldValidator>
                                             </div>
                                         </td>
                                         <td></td>
@@ -205,7 +205,7 @@
                                         <td id="id14">Email:</td>
                                         <td>
                                             <div>
-                                                <asp:TextBox ID="EmailBox" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup"></asp:TextBox><asp:RequiredFieldValidator ID="EmailValidator" runat="server" ErrorMessage="*" ControlToValidate="EmailBox" ForeColor="#FF0066" ValidationGroup="RegisterGroup"></asp:RequiredFieldValidator>
+                                                <asp:TextBox ID="EmailBox" runat="server" CssClass="RegBox" ValidationGroup="RegisterGroup" ToolTip="Enter Valid Email"></asp:TextBox><asp:RequiredFieldValidator ID="EmailValidator" runat="server" ErrorMessage="*" ControlToValidate="EmailBox" ForeColor="#FF0066" ValidationGroup="RegisterGroup"></asp:RequiredFieldValidator>
                                             </div>
                                         </td>
                                         <td></td>

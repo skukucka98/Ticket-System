@@ -18,13 +18,13 @@
                                         <tr id="lg1">
                                             <td id="id1">Username:</td>
                                             <td>
-                                                <asp:TextBox ID="UsernameBox" runat="server" CssClass="LoginBox" ValidationGroup="LoginGroup"></asp:TextBox>
+                                                <asp:TextBox ID="UsernameBox" runat="server" CssClass="LoginBox" ValidationGroup="LoginGroup" ToolTip="Enter Username"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="UsernameValidator" runat="server" ErrorMessage="*" ForeColor="#FF0066" ControlToValidate="UsernameBox" ValidationGroup="LoginGroup"></asp:RequiredFieldValidator></td>
                                         </tr>
                                         <tr id="lg2">
                                             <td id="id2">Password:</td>
                                             <td>
-                                                <asp:TextBox ID="PasswordBox" runat="server" CssClass="LoginBox" TextMode="Password" ValidationGroup="LoginGroup"></asp:TextBox>
+                                                <asp:TextBox ID="PasswordBox" runat="server" CssClass="LoginBox" TextMode="Password" ValidationGroup="LoginGroup" ToolTip="Enter Password"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="PasswordValidator" runat="server" ErrorMessage="*" ForeColor="#FF0066" ControlToValidate="PasswordBox" ValidationGroup="LoginGroup"></asp:RequiredFieldValidator></td>
                                         </tr>
                                         <tr>

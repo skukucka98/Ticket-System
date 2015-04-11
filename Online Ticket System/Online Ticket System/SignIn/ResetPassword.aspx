@@ -22,7 +22,7 @@
                                 </td>
                                 <td id="repa2">
                                     <div>
-                                        <asp:TextBox ID="RePass" runat="server" CssClass="ResetBox" ValidationGroup="reset" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox ID="RePass" runat="server" CssClass="ResetBox" ValidationGroup="reset" TextMode="Password" ToolTip="Enter New Password"></asp:TextBox>
                                     </div>
                                 </td>
                                 <td>
@@ -37,7 +37,7 @@
                                 </td>
                                 <td id="repa4">
                                     <div>
-                                        <asp:TextBox ID="RePaConfirm" runat="server" ValidationGroup="reset" CssClass="ResetBox" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox ID="RePaConfirm" runat="server" ValidationGroup="reset" CssClass="ResetBox" TextMode="Password" ToolTip="Re-Enter New Password"></asp:TextBox>
                                     </div>
                                 </td>
                                 <td>
