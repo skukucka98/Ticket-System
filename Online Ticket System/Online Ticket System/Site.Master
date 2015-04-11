@@ -62,7 +62,7 @@
             </div>
             <div id="navigation">
                 <table>
-                    <tr style="width=1200px;">
+                    <tr style="width:1200px;">
                         <th>
                             <ul id="nav">
                                 <li><a href="http://goevent.info">Home </a></li>
