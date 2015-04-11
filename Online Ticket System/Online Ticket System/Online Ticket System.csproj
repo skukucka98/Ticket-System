@@ -140,6 +140,7 @@
     <Content Include="Checkout\CheckoutComplete.aspx" />
     <Content Include="Checkout\CheckoutError.aspx" />
     <Content Include="Checkout\CheckoutReview.aspx" />
+    <Content Include="Checkout\CheckoutStart.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -287,6 +288,13 @@
     <Compile Include="Checkout\CheckoutReview.aspx.designer.cs">
       <DependentUpon>CheckoutReview.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Checkout\CheckoutStart.aspx.cs">
+      <DependentUpon>CheckoutStart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Checkout\CheckoutStart.aspx.designer.cs">
+      <DependentUpon>CheckoutStart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Create\AdministratorPage.aspx.cs">
       <DependentUpon>AdministratorPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -375,7 +383,9 @@
     </Compile>
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\NVPAPICaller.cs" />
+    <Compile Include="Models\NVPAPICaller.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Product.cs" />

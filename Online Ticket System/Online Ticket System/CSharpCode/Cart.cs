@@ -21,5 +21,10 @@ namespace Online_Ticket_System.CSharpCode
             Cusname = name;
             Seatid = id;
         }
+
+        public List<int> getList()
+        {
+            return Seatid;
+        }
     }
 }

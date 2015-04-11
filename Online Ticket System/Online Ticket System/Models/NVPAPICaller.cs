@@ -8,11 +8,17 @@ using System.Data;
 using System.Configuration;
 using System.Web;
 using Online_Ticket_System;
-using Online_Ticket_System.Models;
+using Online_Ticket_System.CSharpCode;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.UI.WebControls;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
 
-public class NVPAPICaller
+public class NVPAPICaller : System.Web.UI.Page
 {
     //Flag that determines the PayPal environment (live or sandbox)
     private const bool bSandbox = true;
@@ -66,24 +72,19 @@ public class NVPAPICaller
         encoder["METHOD"] = "SetExpressCheckout";
         encoder["RETURNURL"] = returnURL;
         encoder["CANCELURL"] = cancelURL;
-        encoder["BRANDNAME"] = "Wingtip Toys Sample Application";
+        encoder["BRANDNAME"] = "Go Events Ticket System";
         encoder["PAYMENTREQUEST_0_AMT"] = amt;
         encoder["PAYMENTREQUEST_0_ITEMAMT"] = amt;
         encoder["PAYMENTREQUEST_0_PAYMENTACTION"] = "Sale";
         encoder["PAYMENTREQUEST_0_CURRENCYCODE"] = "USD";
 
-        // Get the Shopping Cart Products
-        using (Online_Ticket_System.Models.ShoppingCartActions myCartOrders = new Online_Ticket_System.Models.ShoppingCartActions())
-        {
-            List<CartItem> myOrderList = myCartOrders.GetCartItems();
-
+        List<CartItem> myOrderList = (List<CartItem>)Session["CartItems"];
+            
             for (int i = 0; i < myOrderList.Count; i++)
             {
-                encoder["L_PAYMENTREQUEST_0_NAME" + i] = myOrderList[i].Product.ProductName.ToString();
-                encoder["L_PAYMENTREQUEST_0_AMT" + i] = myOrderList[i].Product.UnitPrice.ToString();
-                encoder["L_PAYMENTREQUEST_0_QTY" + i] = myOrderList[i].Quantity.ToString();
+                encoder["L_PAYMENTREQUEST_0_NAME" + i] = myOrderList[i].EventName.ToString();
+                encoder["L_PAYMENTREQUEST_0_AMT" + i] = myOrderList[i].Price.ToString();
             }
-        }
 
         string pStrrequestforNvp = encoder.Encode();
         string pStresponsenvp = HttpCall(pStrrequestforNvp);
