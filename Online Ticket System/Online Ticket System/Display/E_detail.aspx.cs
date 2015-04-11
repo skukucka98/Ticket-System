@@ -90,6 +90,7 @@ namespace Online_Ticket_System.Display
                 Cart c = new Cart(cookie["id"], id);
                 Session.Add("Cart", c);
             }
+            Response.Redirect("~/Checkout/CheckoutStart.aspx");
         }
     }
 }

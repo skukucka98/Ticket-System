@@ -1021,10 +1021,10 @@ namespace Online_Ticket_System.CSharpCode
             return count;
         }
 
-        public static ArrayList GetCartinfo(int id)
+        public static CartItem GetCartinfo(int id)
         {
-            CartItem ct;
-            ArrayList list = new ArrayList();
+            CartItem ct = new CartItem();
+            //ArrayList list = new ArrayList();
             string query = string.Format("EXEC [dbo].[CartItemInfo] {0}", id);
             try
             {
@@ -1033,15 +1033,15 @@ namespace Online_Ticket_System.CSharpCode
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    ct = new CartItem();
+                    
                     ct.EventName = reader.GetString(0);
                     ct.EventDate = reader.GetDateTime(1);
-                    ct.eventtime = reader.GetString(2);
-                    ct.catenum = reader.GetString(3);
+                    ct.eventtime = reader.GetTimeSpan(2);
+                    ct.catenum = reader.GetInt32(3);
                     ct.seatnum = reader.GetInt32(4);
                     ct.Price = reader.GetDecimal(5);
                     ct.VenueName = reader.GetString(6);                   
-                    list.Add(ct);
+                    //list.Add(ct);
                 }
             }
             catch (Exception e)
@@ -1053,32 +1053,7 @@ namespace Online_Ticket_System.CSharpCode
                 conn.Close();
             }
 
-            return list;
-        }
-
-        public static int GetSectionNum(int Section, int Venueid)
-        {
-            string query = string.Format("Select count(*) from tblvenueinfo where section= {0} and Venueid = {1}", Section, Venueid);
-            int count = 0;
-            try
-            {
-                conn.Open();
-                cmd.CommandText = query;
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    count = reader.GetInt32(0);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            return count;
+            return ct;
         }
 
     }

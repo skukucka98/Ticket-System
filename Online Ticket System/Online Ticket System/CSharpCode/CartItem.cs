@@ -10,8 +10,8 @@ namespace Online_Ticket_System.CSharpCode
         public string VenueName { get; set; }
         public string EventName { get; set; }
         public DateTime EventDate { get; set; }
-        public string eventtime { get;set;}
-        public string catenum { get; set; }
+        public TimeSpan eventtime { get; set; }
+        public int catenum { get; set; }
         public int seatnum { get; set; }
         public decimal Price { get; set; }
     }
