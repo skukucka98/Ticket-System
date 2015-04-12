@@ -393,6 +393,5 @@ C:\Users\Ritchie\Documents\GitHub\Ticket-System\Online Ticket System\Online Tick
 C:\Users\Ritchie\Documents\GitHub\Ticket-System\Online Ticket System\Online Ticket System\bin\ru\System.Spatial.resources.dll
 C:\Users\Ritchie\Documents\GitHub\Ticket-System\Online Ticket System\Online Ticket System\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Ritchie\Documents\GitHub\Ticket-System\Online Ticket System\Online Ticket System\bin\zh-Hant\System.Spatial.resources.dll
-C:\Users\Ritchie\Documents\GitHub\Ticket-System\Online Ticket System\Online Ticket System\obj\Debug\Online Ticket System.csprojResolveAssemblyReference.cache
 C:\Users\Ritchie\Documents\GitHub\Ticket-System\Online Ticket System\Online Ticket System\obj\Debug\Online Ticket System.dll
 C:\Users\Ritchie\Documents\GitHub\Ticket-System\Online Ticket System\Online Ticket System\obj\Debug\Online Ticket System.pdb

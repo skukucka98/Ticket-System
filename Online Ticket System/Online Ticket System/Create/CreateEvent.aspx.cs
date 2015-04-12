@@ -205,6 +205,12 @@ namespace Online_Ticket_System.Create
             }
         }
 
-
+        protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            int Eventid = Convert.ToInt32(GridView1.DataKeys[e.NewSelectedIndex].Value);
+            SqlDataSource4.SelectParameters["EventID"].DefaultValue = Eventid.ToString();
+            eDetails.DataBind();
+            Button1_ModalPopupExtender.Show();
+        }
     }
 }

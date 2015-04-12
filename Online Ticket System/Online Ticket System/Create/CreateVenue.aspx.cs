@@ -24,19 +24,19 @@ namespace Online_Ticket_System.Create
             }
         }
 
-        protected void Page_Prerender(object sender, EventArgs e)
-        {
-            if (GridView1.SelectedRow == null)
-            {
-                Vdetail.Visible = false;
-            }
-            else
-            {
-                Vdetail.Visible = true;
-            }
+        //protected void Page_Prerender(object sender, EventArgs e)
+        //{
+        //    if (GridView1.SelectedRow == null)
+        //    {
+        //        Vdetail.Visible = false;
+        //    }
+        //    else
+        //    {
+        //        Vdetail.Visible = true;
+        //    }
 
 
-        }
+        //}
 
         protected void AddSeat_Click(object sender, EventArgs e)
         {
@@ -264,6 +264,14 @@ namespace Online_Ticket_System.Create
         {
             int n;
             args.IsValid = args.Value.Replace(" ", string.Empty).Length == 5 && int.TryParse(args.Value, out n);
+        }
+
+        protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            int Venueid = Convert.ToInt32(GridView1.DataKeys[e.NewSelectedIndex].Value);
+            SqlDataSource2.SelectParameters["VenueID"].DefaultValue = Venueid.ToString();
+            VenDetail.DataBind();
+            Button1_ModalPopupExtender.Show();
         }
 
     }

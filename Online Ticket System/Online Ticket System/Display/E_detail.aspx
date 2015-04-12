@@ -15,12 +15,6 @@
             width: 400px;
         }
 
-        .jsMpeBackground {
-            background-color: gray;
-            filter: alpha(opacity=90);
-            opacity: 0.8;
-        }
-
         .modalPopup {
             background-color: #ffffff;
             border-width: 3px;
