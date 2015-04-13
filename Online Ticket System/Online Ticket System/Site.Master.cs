@@ -162,5 +162,10 @@ namespace Online_Ticket_System
         {
             Response.Redirect("~/SignIn/Register.aspx");
         }
+
+        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
+        {
+            Response.Redirect("~/Default.aspx");
+        }
     }
 }

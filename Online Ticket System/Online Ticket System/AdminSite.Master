@@ -43,7 +43,8 @@
         <div id="wrapper">
             <div id="banner">
                 <div id="HeaderName">
-                    Go Events
+<%--                    <asp:Image ID="ImageButton1" runat="server" ImageUrl="~/Images/Logo/logo4.png" Height="144px" Width="343px" />--%>
+                    <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/Logo/logo4.png" Height="144px" Width="343px" />
                 </div>
             </div>
             <div style="text-align: right">

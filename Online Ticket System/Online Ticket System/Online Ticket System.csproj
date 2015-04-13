@@ -185,6 +185,12 @@
     <Content Include="Images\Events\taylor swift.jpg" />
     <Content Include="Images\Events\the weekend.jpg" />
     <Content Include="Images\left.png" />
+    <Content Include="Images\Logo\logo.png.png" />
+    <Content Include="Images\Logo\logo1.png.png" />
+    <Content Include="Images\Logo\logo2a..fw.png" />
+    <Content Include="Images\Logo\logo2n.png" />
+    <Content Include="Images\Logo\logo3.png" />
+    <Content Include="Images\Logo\logo4.png" />
     <Content Include="Images\PrIcon.png" />
     <Content Include="Images\right.png" />
     <Content Include="Images\seat diagram.jpg" />
