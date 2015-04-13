@@ -236,7 +236,7 @@ namespace Online_Ticket_System.Create
         {
             GridView1.DataBind();
             GridView1.SelectRow(-1);
-            venueOutput.Visible = false;
+            Button1_ModalPopupExtender.Hide();
         }
 
         protected void VenueGrid_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -268,10 +268,13 @@ namespace Online_Ticket_System.Create
 
         protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
-            int Venueid = Convert.ToInt32(GridView1.DataKeys[e.NewSelectedIndex].Value);
-            SqlDataSource2.SelectParameters["VenueID"].DefaultValue = Venueid.ToString();
-            VenDetail.DataBind();
-            Button1_ModalPopupExtender.Show();
+            if (e.NewSelectedIndex != -1)
+            {
+                int Venueid = Convert.ToInt32(GridView1.DataKeys[e.NewSelectedIndex].Value);
+                SqlDataSource2.SelectParameters["VenueID"].DefaultValue = Venueid.ToString();
+                VenDetail.DataBind();
+                Button1_ModalPopupExtender.Show();
+            }
         }
 
     }

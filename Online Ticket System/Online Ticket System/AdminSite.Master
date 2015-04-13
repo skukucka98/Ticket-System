@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>GO EVENTS</title>
-    <link rel="shortcut icon" href="~/Images/PrIcon.png" />
+    <link rel="shortcut icon" href="~/Images/Logo/icon.jpg" />
     <script type="text/javascript" src="../Scripts/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
         function mainmenu() {

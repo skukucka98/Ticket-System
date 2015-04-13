@@ -396,7 +396,8 @@
                                                         ErrorMessage="Invalid Zipcode"
                                                         ControlToValidate="TextBox3"
                                                         ForeColor="Red"
-                                                        OnServerValidate="CustomValidator_ServerValidate"></asp:CustomValidator>
+                                                        OnServerValidate="CustomValidator_ServerValidate">
+                                                    </asp:CustomValidator>
                                                 </EditItemTemplate>
                                                 <InsertItemTemplate>
                                                     <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("ZipCode") %>'></asp:TextBox>

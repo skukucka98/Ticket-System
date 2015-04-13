@@ -28,30 +28,37 @@
                                     <cc1:CalendarExtender ID="txtEventDate_CalendarExtender" runat="server" TargetControlID="txtEventDate">
                                     </cc1:CalendarExtender>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtEventDate" ErrorMessage="*" ValidationGroup="AddEvent" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:CustomValidator ID="CustomValidator1" runat="server" ErrorMessage="Invalid Date Format" ControlToValidate="txtEventDate" ValidationGroup="AddEvent" ForeColor="Red" OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator>
+
                                 </td>
                             </tr>
                             <tr>
                                 <td style="width: 200px; text-align: right">Time:</td>
                                 <td style="width: 495px; text-align: left">
-                                    <asp:TextBox ID="txtEventTime" runat="server" Width="300px" ValidationGroup="AddEvent" TargetControlID="txtEventTime" CssClass="CrBox"></asp:TextBox>
-                                    <cc1:DropDownExtender ID="txtEventTime_DropDownExtender" runat="server" TargetControlID="txtEventTime" DropDownControlID="ListBox1">
-                                    </cc1:DropDownExtender>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEventTime" ErrorMessage="*" ValidationGroup="AddEvent" ForeColor="Red"></asp:RequiredFieldValidator>
-                                    <asp:ListBox ID="ListBox1" runat="server" Style="display: none; visibility: hidden;" AutoPostBack="true" OnSelectedIndexChanged="ListBox_SelectedIndexChanged">
-                                        <asp:ListItem>10:00:00</asp:ListItem>
-                                        <asp:ListItem>11:00:00</asp:ListItem>
-                                        <asp:ListItem>12:00:00</asp:ListItem>
-                                        <asp:ListItem>13:00:00</asp:ListItem>
-                                        <asp:ListItem>14:00:00</asp:ListItem>
-                                        <asp:ListItem>15:00:00</asp:ListItem>
-                                        <asp:ListItem>16:00:00</asp:ListItem>
-                                        <asp:ListItem>17:00:00</asp:ListItem>
-                                        <asp:ListItem>18:00:00</asp:ListItem>
-                                        <asp:ListItem>19:00:00</asp:ListItem>
-                                        <asp:ListItem>20:00:00</asp:ListItem>
-                                        <asp:ListItem>21:00:00</asp:ListItem>
-                                        <asp:ListItem>22:00:00</asp:ListItem>
-                                    </asp:ListBox>
+                                    <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                        <ContentTemplate>
+                                            <asp:TextBox ID="txtEventTime" runat="server" Width="300px" ValidationGroup="AddEvent" TargetControlID="txtEventTime" CssClass="CrBox"></asp:TextBox>
+                                            <cc1:DropDownExtender ID="txtEventTime_DropDownExtender" runat="server" TargetControlID="txtEventTime" DropDownControlID="ListBox1">
+                                            </cc1:DropDownExtender>
+                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtEventTime" ErrorMessage="*" ValidationGroup="AddEvent" ForeColor="Red"></asp:RequiredFieldValidator>
+                                            <asp:ListBox ID="ListBox1" runat="server" Style="display: none; visibility: hidden;" AutoPostBack="true" OnSelectedIndexChanged="ListBox_SelectedIndexChanged" Width="300px">
+                                                <asp:ListItem>10:00:00</asp:ListItem>
+                                                <asp:ListItem>11:00:00</asp:ListItem>
+                                                <asp:ListItem>12:00:00</asp:ListItem>
+                                                <asp:ListItem>13:00:00</asp:ListItem>
+                                                <asp:ListItem>14:00:00</asp:ListItem>
+                                                <asp:ListItem>15:00:00</asp:ListItem>
+                                                <asp:ListItem>16:00:00</asp:ListItem>
+                                                <asp:ListItem>17:00:00</asp:ListItem>
+                                                <asp:ListItem>18:00:00</asp:ListItem>
+                                                <asp:ListItem>19:00:00</asp:ListItem>
+                                                <asp:ListItem>20:00:00</asp:ListItem>
+                                                <asp:ListItem>21:00:00</asp:ListItem>
+                                                <asp:ListItem>22:00:00</asp:ListItem>
+                                            </asp:ListBox>
+                                            <asp:CustomValidator ID="CustomValidator2" runat="server" ErrorMessage="Invalid Time Format" ControlToValidate="txtEventTime" ForeColor="Red" OnServerValidate="CustomValidator2_ServerValidate" ValidationGroup="AddEvent"></asp:CustomValidator>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
                                 </td>
                             </tr>
                             <tr>
@@ -78,12 +85,39 @@
                                             </SelectParameters>
                                         </asp:SqlDataSource>
                                         Price
-                                                <asp:TextBox ID="txtPrice" runat="server" Width="66px" ValidationGroup="AddEvent" CssClass="CrSmalBox"></asp:TextBox>
+                                                <asp:TextBox ID="txtPrice" runat="server" Width="66px" ValidationGroup="AddEvent" CssClass="btnstandard" Height="25px"></asp:TextBox>
                                         <asp:Button ID="price" runat="server" Text="Add Price" OnClick="price_Click" CssClass="CrEButt" />
                                         <asp:Label ID="lbPrice" runat="server"></asp:Label>
                                     </div>
-                                    <br />
-
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div id="gridevent" runat="server">
+                                        <asp:GridView ID="EventGrid" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="EventGrid_RowDeleting">
+                                            <AlternatingRowStyle BackColor="White" />
+                                            <Columns>
+                                                <asp:BoundField DataField="SeatSection" HeaderText="Section" />
+                                                <asp:BoundField DataField="TotalSeat" HeaderText="Total Seat" />
+                                                <asp:BoundField DataField="Price" HeaderText="Price" />
+                                                <asp:TemplateField ShowHeader="False">
+                                                    <ItemTemplate>
+                                                        <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                            <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                                            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                                            <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+                                            <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+                                            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+                                            <SortedAscendingCellStyle BackColor="#FDF5AC" />
+                                            <SortedAscendingHeaderStyle BackColor="#4D0000" />
+                                            <SortedDescendingCellStyle BackColor="#FCF6C0" />
+                                            <SortedDescendingHeaderStyle BackColor="#820000" />
+                                        </asp:GridView>
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -94,7 +128,6 @@
                                         <asp:ListItem Selected="True">Please Select a Category</asp:ListItem>
                                     </asp:DropDownList>
                                     <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" SelectCommand="SELECT [EventCategoryID], [Name] FROM [tblEventCategory] WHERE ([ParentCategoryID] IS NOT NULL)"></asp:SqlDataSource>
-
                                 </td>
                             </tr>
                             <tr>
@@ -127,73 +160,67 @@
                                 </td>
                             </tr>
                         </table>
-
-                        <br />
-                        <br />
-                        <div id="gridevent" runat="server">
-                            <asp:GridView ID="EventGrid" runat="server">
-                            </asp:GridView>
-                        </div>
-                        <br />
                         <div>
                             <h2 style="text-align: left">Event Management</h2>
-                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                <ContentTemplate>
-                                    <asp:GridView ID="GridView1" runat="server"
-                                        AllowPaging="True" AutoGenerateColumns="False"
-                                        CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333"
-                                        GridLines="None" Height="539px" DataKeyNames="Eventid" OnSelectedIndexChanging="GridView1_SelectedIndexChanging">
-                                        <AlternatingRowStyle BackColor="White" />
-                                        <Columns>
-                                            <asp:TemplateField HeaderText="Event Name" SortExpression="Name" ControlStyle-Width="300px" ItemStyle-HorizontalAlign="Left">
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
-                                                </EditItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
-                                                </ItemTemplate>
+                            <div style="height: 500px; overflow: auto; width: 845px">
+                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                    <ContentTemplate>
+                                        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
+                                            CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333"
+                                            GridLines="None" DataKeyNames="Eventid" OnSelectedIndexChanging="GridView1_SelectedIndexChanging">
+                                            <AlternatingRowStyle BackColor="White" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="Event Name" SortExpression="Name" ControlStyle-Width="300px" ItemStyle-HorizontalAlign="Left">
+                                                    <EditItemTemplate>
+                                                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
+                                                    </EditItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
+                                                    </ItemTemplate>
 
-                                                <ControlStyle Width="250px"></ControlStyle>
+                                                    <ControlStyle Width="250px"></ControlStyle>
 
-                                                <HeaderStyle HorizontalAlign="Left" />
+                                                    <HeaderStyle HorizontalAlign="Left" />
 
-                                                <ItemStyle HorizontalAlign="Left"></ItemStyle>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="SubCategory" SortExpression="SubCategory" HeaderStyle-HorizontalAlign="Left">
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("SubCategory") %>'></asp:TextBox>
-                                                </EditItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("SubCategory") %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <ControlStyle Width="200px" />
+                                                    <ItemStyle HorizontalAlign="Left"></ItemStyle>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="SubCategory" SortExpression="SubCategory" HeaderStyle-HorizontalAlign="Left">
+                                                    <EditItemTemplate>
+                                                        <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("SubCategory") %>'></asp:TextBox>
+                                                    </EditItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("SubCategory") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ControlStyle Width="200px" />
 
-                                                <HeaderStyle HorizontalAlign="Left"></HeaderStyle>
+                                                    <HeaderStyle HorizontalAlign="Left"></HeaderStyle>
 
-                                                <ItemStyle HorizontalAlign="Left" />
-                                            </asp:TemplateField>
-                                            <asp:BoundField DataField="EventDate" HeaderText="EventDate" SortExpression="EventDate" DataFormatString="{0:d}" />
-                                            <asp:BoundField DataField="EventTime" HeaderText="EventTime" SortExpression="EventTime" />
-                                            <asp:BoundField DataField="Status" HeaderText="Status" />
-                                            <asp:TemplateField HeaderText="Manage" ShowHeader="False">
-                                                <ItemTemplate>
-                                                    <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Select" Text="Detail" CssClass="btnstandard" Width="75" Height="35" />
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                        </Columns>
-                                        <EditRowStyle BackColor="#7C6F57" />
-                                        <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                                        <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                                        <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-                                        <RowStyle BackColor="#E3EAEB" />
-                                        <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
-                                        <SortedAscendingCellStyle BackColor="#F8FAFA" />
-                                        <SortedAscendingHeaderStyle BackColor="#246B61" />
-                                        <SortedDescendingCellStyle BackColor="#D4DFE1" />
-                                        <SortedDescendingHeaderStyle BackColor="#15524A" />
-                                    </asp:GridView>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
+                                                    <ItemStyle HorizontalAlign="Left" />
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="EventDate" HeaderText="EventDate" SortExpression="EventDate" DataFormatString="{0:d}" />
+                                                <asp:BoundField DataField="EventTime" HeaderText="EventTime" SortExpression="EventTime" />
+                                                <asp:BoundField DataField="Status" HeaderText="Status" />
+                                                <asp:TemplateField HeaderText="Manage" ShowHeader="False">
+                                                    <ItemTemplate>
+                                                        <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Select" Text="Detail" CssClass="btnstandard" Width="75" Height="35" />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                            <EditRowStyle BackColor="#7C6F57" />
+                                            <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                                            <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+                                            <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+                                            <RowStyle BackColor="#E3EAEB" />
+                                            <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
+                                            <SortedAscendingCellStyle BackColor="#F8FAFA" />
+                                            <SortedAscendingHeaderStyle BackColor="#246B61" />
+                                            <SortedDescendingCellStyle BackColor="#D4DFE1" />
+                                            <SortedDescendingHeaderStyle BackColor="#15524A" />
+                                        </asp:GridView>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </div>
+
                             <asp:Panel ID="Panel1" runat="server" CssClass="Popup">
                                 <div style="background-color: lightgray">
                                     <div style="position: relative; margin-bottom: 3px; top: 3px; margin-right: 10px; text-align: right;">
@@ -204,27 +231,140 @@
                                     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                         <ContentTemplate>
                                             <div style="background-color: white; margin-left: 2px; margin-right: 2px">
-                                                <div>Event Detail</div>
+                                                <div style="font-size: large; margin-bottom: 10px; margin-top: 10px;">Event Detail</div>
                                                 <div>
-                                                    <asp:DetailsView ID="eDetails" runat="server" AutoGenerateRows="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" DataSourceID="SqlDataSource4" GridLines="Vertical" Height="50px" Width="125px" DataKeyNames="EventID">
-                                                        <AlternatingRowStyle BackColor="#DCDCDC" />
-                                                        <EditRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                                                    <asp:DetailsView ID="eDetails" runat="server"
+                                                        AutoGenerateRows="False"
+                                                        BackColor="White" BorderStyle="None"
+                                                        CellPadding="3" DataSourceID="SqlDataSource4"
+                                                        GridLines="Horizontal" Height="50px" Width="590px" DataKeyNames="EventID" HorizontalAlign="Center" BorderColor="#E7E7FF" BorderWidth="1px" OnItemDeleted="eDetails_ItemDeleted" OnItemUpdated="eDetails_ItemUpdated">
+                                                        <AlternatingRowStyle BackColor="#F7F7F7" />
+                                                        <CommandRowStyle HorizontalAlign="Left" />
+                                                        <EditRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="#F7F7F7" HorizontalAlign="Left" />
+                                                        <FieldHeaderStyle HorizontalAlign="Left" Width="120px" />
+                                                        <RowStyle HorizontalAlign="Left" BackColor="#EEEEEE" ForeColor="Black" />
                                                         <Fields>
-                                                            <asp:BoundField DataField="EventID" HeaderText="EventID" InsertVisible="False" ReadOnly="True" SortExpression="EventID" />
-                                                            <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
-                                                            <asp:BoundField DataField="EventDate" HeaderText="EventDate" SortExpression="EventDate" />
-                                                            <asp:BoundField DataField="EventTime" HeaderText="EventTime" SortExpression="EventTime" />
-                                                            <asp:BoundField DataField="VenueID" HeaderText="VenueID" SortExpression="VenueID" />
-                                                            <asp:BoundField DataField="CategoryID" HeaderText="CategoryID" SortExpression="CategoryID" />
-                                                            <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
-                                                            <asp:CommandField ButtonType="Button" ShowDeleteButton="True" ShowEditButton="True" />
+                                                            <asp:TemplateField HeaderText="Name" SortExpression="Name">
+                                                                <EditItemTemplate>
+                                                                    <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Name") %>' CssClass="btnstandard" Width="250px"></asp:TextBox>
+                                                                </EditItemTemplate>
+                                                                <InsertItemTemplate>
+                                                                    <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
+                                                                </InsertItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="Label6" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="EventDate" SortExpression="EventDate">
+                                                                <EditItemTemplate>
+                                                                    <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("EventDate", "{0:d}") %>' CssClass="btnstandard" Width="250px"></asp:TextBox>
+                                                                    <asp:CustomValidator ID="CustomValidator3" runat="server"
+                                                                        ControlToValidate="TextBox5"
+                                                                        ErrorMessage="InValid Date Format"
+                                                                        ForeColor="Red" OnServerValidate="CustomValidator3_ServerValidate">
+                                                                    </asp:CustomValidator>
+                                                                </EditItemTemplate>
+                                                                <InsertItemTemplate>
+                                                                    <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("EventDate", "{0:d}") %>'></asp:TextBox>
+                                                                </InsertItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="Label5" runat="server" Text='<%# Bind("EventDate", "{0:d}") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="EventTime" SortExpression="EventTime">
+                                                                <EditItemTemplate>
+                                                                    <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("EventTime") %>' CssClass="btnstandard" Width="250px"></asp:TextBox>
+                                                                    <asp:CustomValidator ID="CustomValidator"
+                                                                        runat="server"
+                                                                        ErrorMessage="Invalid Time Format"
+                                                                        ControlToValidate="TextBox4"
+                                                                        ForeColor="Red" OnServerValidate="CustomValidator_ServerValidate"></asp:CustomValidator>
+                                                                </EditItemTemplate>
+                                                                <InsertItemTemplate>
+                                                                    <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("EventTime") %>'></asp:TextBox>
+                                                                </InsertItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("EventTime") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Venue" SortExpression="Venue">
+                                                                <EditItemTemplate>
+                                                                    <%--<asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Venue") %>'></asp:TextBox>--%>
+                                                                    <asp:DropDownList ID="TextBox3" runat="server" SelectedValue='<%# Bind("Venue") %>' DataSourceID="SqlDataSource5" DataTextField="Venue" DataValueField="Venue" CssClass="btnstandard" Width="250px"></asp:DropDownList>
+                                                                </EditItemTemplate>
+                                                                <InsertItemTemplate>
+                                                                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Venue") %>'></asp:TextBox>
+                                                                </InsertItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("Venue") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="SubCategory" SortExpression="SubCategory">
+                                                                <EditItemTemplate>
+                                                                    <%--<asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("SubCategory") %>'></asp:TextBox>--%>
+                                                                    <asp:DropDownList ID="TextBox2" runat="server" DataSourceID="SqlDataSource1" SelectedValue='<%# Bind("SubCategory") %>' DataTextField="SubCategory" DataValueField="SubCategory" CssClass="btnstandard" Width="250px"></asp:DropDownList>
+                                                                </EditItemTemplate>
+                                                                <InsertItemTemplate>
+                                                                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("SubCategory") %>'></asp:TextBox>
+                                                                </InsertItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("SubCategory") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Status" SortExpression="status">
+                                                                <EditItemTemplate>
+                                                                    <%--<asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("status") %>'></asp:TextBox>--%>
+                                                                    <asp:DropDownList ID="TextBox7" runat="server" SelectedValue='<%# Bind("status") %>' CssClass="btnstandard" Width="250px">
+                                                                        <asp:ListItem>Available</asp:ListItem>
+                                                                        <asp:ListItem>Unavailable</asp:ListItem>
+                                                                    </asp:DropDownList>
+                                                                </EditItemTemplate>
+                                                                <InsertItemTemplate>
+                                                                    <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("status") %>'></asp:TextBox>
+                                                                </InsertItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="Label7" runat="server" Text='<%# Bind("status") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Description" SortExpression="Description">
+                                                                <EditItemTemplate>
+                                                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Description") %>' CssClass="btnstandard" Width="250px" Height="100px" TextMode="MultiLine"></asp:TextBox>
+                                                                </EditItemTemplate>
+                                                                <InsertItemTemplate>
+                                                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Description") %>'></asp:TextBox>
+                                                                </InsertItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("Description") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField ShowHeader="False">
+                                                                <EditItemTemplate>
+                                                                    <asp:Button ID="Button1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="C_PTButt" BackColor="Green" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to update this venue?')" />
+                                                                    <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="C_PTButt" />
+                                                                </EditItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="C_PTButt" BackColor="#33ccff" ForeColor="White" />
+                                                                    <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="C_PTButt" BackColor="Red" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to permanently delete this venue?')" />
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
                                                         </Fields>
-                                                        <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-                                                        <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
-                                                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                                        <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
+                                                        <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
+                                                        <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
                                                         <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
                                                     </asp:DetailsView>
-                                                    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" DeleteCommand="DELETE FROM dbo.tblEvent WHERE (EventID = @EventID)" SelectCommand="SELECT EventID, Name, EventDate, EventTime, VenueID, CategoryID, Description FROM dbo.tblEvent WHERE (EventID = @EventID)" UpdateCommand="UPDATE dbo.tblEvent SET Name = @Name, EventDate = @EventDate, EventTime = @EventTime, VenueID = @VenueID, Status = @Status, CategoryID = @CategoryID, Description = @Description WHERE (EventID = @EventID)">
+                                                    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" DeleteCommand="DELETE FROM dbo.tblEvent WHERE (EventID = @EventID)" SelectCommand="SELECT EventID, e.Name, EventDate, EventTime, v.name as Venue, c.name as SubCategory, e.Description, e.status FROM dbo.tblEvent e
+                                                                                                INNER JOIN dbo.tblVenue v on v.Venueid = e.Venueid 
+                                                                                                INNER JOIN dbo.tblEventCategory c on c.EventCategoryid = e.Categoryid
+                                                                                                WHERE (EventID = @EventID)"
+                                                        UpdateCommand="UPDATE dbo.tblEvent SET Name = @Name
+                                                                        , EventDate = @EventDate
+                                                                        , EventTime = @EventTime
+                                                                        , VenueID = (Select Venueid from tblvenue where Name = @Venue)
+                                                                        , Status = @Status
+                                                                        , CategoryID = (Select EventCategoryid from tblEventCategory where Name = @SubCategory)
+                                                                        , Description = @Description 
+                                                                        WHERE (EventID = @EventID)">
                                                         <DeleteParameters>
                                                             <asp:Parameter Name="EventID" />
                                                         </DeleteParameters>
@@ -235,9 +375,9 @@
                                                             <asp:Parameter Name="Name" />
                                                             <asp:Parameter Name="EventDate" />
                                                             <asp:Parameter Name="EventTime" />
-                                                            <asp:Parameter Name="VenueID" />
+                                                            <asp:Parameter Name="Venue" />
                                                             <asp:Parameter Name="Status" />
-                                                            <asp:Parameter Name="CategoryID" />
+                                                            <asp:Parameter Name="SubCategory" />
                                                             <asp:Parameter Name="Description" />
                                                             <asp:Parameter Name="EventID" />
                                                         </UpdateParameters>
@@ -256,7 +396,10 @@
             <th id="RightContent"></th>
         </tr>
     </table>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" DeleteCommand="DELETE FROM [tblEvent] WHERE [EventID] = @EventID" InsertCommand="INSERT INTO [tblEvent] ([Name], [EventDate], [EventTime], [VenueID], [Status], [CategoryID], [Description], [picture]) VALUES (@Name, @EventDate, @EventTime, @VenueID, @Status, @CategoryID, @Description, @picture)" SelectCommand="SELECT dbo.tblEventCategory.Name AS Category, tblEventCategory_1.Name AS SubCategory, dbo.tblEvent.Name, dbo.tblEvent.EventDate, dbo.tblEvent.EventTime, dbo.tblVenue.Name AS Venue, dbo.tblEvent.Status, dbo.tblEvent.EventID FROM dbo.tblEventCategory INNER JOIN dbo.tblVenue INNER JOIN dbo.tblEvent ON dbo.tblVenue.VenueID = dbo.tblEvent.VenueID INNER JOIN dbo.tblEventCategory AS tblEventCategory_1 ON dbo.tblEvent.CategoryID = tblEventCategory_1.EventCategoryID ON dbo.tblEventCategory.EventCategoryID = tblEventCategory_1.ParentCategoryID" UpdateCommand="UPDATE [tblEvent] SET [Name] = @Name, [EventDate] = @EventDate, [EventTime] = @EventTime, [VenueID] = @VenueID, [Status] = @Status, [CategoryID] = @CategoryID, [Description] = @Description, [picture] = @picture WHERE [EventID] = @EventID">
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>"
+        DeleteCommand="DELETE FROM [tblEvent] WHERE [EventID] = @EventID"
+        InsertCommand="INSERT INTO [tblEvent] ([Name], [EventDate], [EventTime], [VenueID], [Status], [CategoryID], [Description], [picture]) VALUES (@Name, @EventDate, @EventTime, @VenueID, @Status, @CategoryID, @Description, @picture)"
+        SelectCommand="SELECT dbo.tblEventCategory.Name AS Category, tblEventCategory_1.Name AS SubCategory, dbo.tblEvent.Name, dbo.tblEvent.EventDate, dbo.tblEvent.EventTime, dbo.tblVenue.Name AS Venue, dbo.tblEvent.Status, dbo.tblEvent.EventID FROM dbo.tblEventCategory INNER JOIN dbo.tblVenue INNER JOIN dbo.tblEvent ON dbo.tblVenue.VenueID = dbo.tblEvent.VenueID INNER JOIN dbo.tblEventCategory AS tblEventCategory_1 ON dbo.tblEvent.CategoryID = tblEventCategory_1.EventCategoryID ON dbo.tblEventCategory.EventCategoryID = tblEventCategory_1.ParentCategoryID" UpdateCommand="UPDATE [tblEvent] SET [Name] = @Name, [EventDate] = @EventDate, [EventTime] = @EventTime, [VenueID] = @VenueID, [Status] = @Status, [CategoryID] = @CategoryID, [Description] = @Description, [picture] = @picture WHERE [EventID] = @EventID">
         <DeleteParameters>
             <asp:Parameter Name="EventID" Type="Int32" />
         </DeleteParameters>
@@ -282,5 +425,12 @@
             <asp:Parameter Name="EventID" Type="Int32" />
         </UpdateParameters>
     </asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource5" runat="server"
+        ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>"
+        SelectCommand="SELECT [Name] As Venue FROM [tblVenue]"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource6" runat="server"
+        ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>"
+        SelectCommand="SELECT [Name] as SubCategory FROM [tblEventCategory] WHERE ([ParentCategoryID] IS NOT NULL)"></asp:SqlDataSource>
+
 </asp:Content>
 
