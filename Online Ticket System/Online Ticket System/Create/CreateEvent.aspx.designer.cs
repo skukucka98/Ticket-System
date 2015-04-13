@@ -175,6 +175,15 @@ namespace Online_Ticket_System.Create {
         protected global::System.Web.UI.WebControls.TextBox txtPrice;
         
         /// <summary>
+        /// RequiredFieldValidator4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        
+        /// <summary>
         /// price control.
         /// </summary>
         /// <remarks>
@@ -191,15 +200,6 @@ namespace Online_Ticket_System.Create {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPrice;
-        
-        /// <summary>
-        /// gridevent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl gridevent;
         
         /// <summary>
         /// EventGrid control.

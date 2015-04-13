@@ -73,53 +73,85 @@
                                 </td>
                             </tr>
                             <tr>
+                                <td style="text-align:right">Section Info:</td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>Seat Level</td>
+                                            <td>Price</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <asp:DropDownList ID="SeatDropDown" runat="server" DataSourceID="SqlDataSource8" DataTextField="Section" DataValueField="Section" CssClass="CrSmallDrDown">
+                                                    <asp:ListItem Selected="True" Value="Please Select Seat level">Please Select Seat level</asp:ListItem>
+                                                </asp:DropDownList>
+                                                <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" SelectCommand="SELECT [Section], [ID] FROM [tblVenueInfo] WHERE ([VenueID] = @VenueID)">
+                                                    <SelectParameters>
+                                                        <asp:ControlParameter ControlID="VenueIDDd" Name="VenueID" PropertyName="SelectedValue" Type="Int32" />
+                                                    </SelectParameters>
+                                                </asp:SqlDataSource>
+                                            </td>
+                                            <td>
+                                                <asp:TextBox ID="txtPrice" runat="server" Width="66px" ValidationGroup="AddPrice" CssClass="btnstandard" Height="25px"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtPrice" ValidationGroup="AddPrice"></asp:RequiredFieldValidator>
+                                            </td>
+                                            <td>
+                                                <asp:Button ID="price" runat="server" Text="Add" OnClick="price_Click" CssClass="CrEButt" ValidationGroup="AddPrice" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <asp:Label ID="lbPrice" runat="server"></asp:Label>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <asp:GridView ID="EventGrid" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="EventGrid_RowDeleting">
+                                                    <AlternatingRowStyle BackColor="White" />
+                                                    <Columns>
+                                                        <asp:BoundField DataField="SeatSection" HeaderText="Section" />
+                                                        <asp:BoundField DataField="TotalSeat" HeaderText="Total Seat" />
+                                                        <asp:BoundField DataField="Price" HeaderText="Price" />
+                                                        <asp:TemplateField ShowHeader="False">
+                                                            <ItemTemplate>
+                                                                <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                    <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                                                    <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+                                                    <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+                                                    <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+                                                    <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+                                                    <SortedAscendingCellStyle BackColor="#FDF5AC" />
+                                                    <SortedAscendingHeaderStyle BackColor="#4D0000" />
+                                                    <SortedDescendingCellStyle BackColor="#FCF6C0" />
+                                                    <SortedDescendingHeaderStyle BackColor="#820000" />
+                                                </asp:GridView>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <%--                            <tr>
                                 <td style="width: 200px; text-align: right">Seat level:</td>
                                 <td class="auto-style2" style="text-align: left">
                                     <div>
-                                        <asp:DropDownList ID="SeatDropDown" runat="server" DataSourceID="SqlDataSource8" DataTextField="Section" DataValueField="Section" CssClass="CrSmallDrDown">
-                                            <asp:ListItem Selected="True" Value="Please Select Seat level">Please Select Seat level</asp:ListItem>
-                                        </asp:DropDownList>
-                                        <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" SelectCommand="SELECT [Section], [ID] FROM [tblVenueInfo] WHERE ([VenueID] = @VenueID)">
-                                            <SelectParameters>
-                                                <asp:ControlParameter ControlID="VenueIDDd" Name="VenueID" PropertyName="SelectedValue" Type="Int32" />
-                                            </SelectParameters>
-                                        </asp:SqlDataSource>
                                         Price
-                                                <asp:TextBox ID="txtPrice" runat="server" Width="66px" ValidationGroup="AddEvent" CssClass="btnstandard" Height="25px"></asp:TextBox>
-                                        <asp:Button ID="price" runat="server" Text="Add Price" OnClick="price_Click" CssClass="CrEButt" />
                                         <asp:Label ID="lbPrice" runat="server"></asp:Label>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+s                            <tr>
                                 <td></td>
                                 <td>
                                     <div id="gridevent" runat="server">
-                                        <asp:GridView ID="EventGrid" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="EventGrid_RowDeleting">
-                                            <AlternatingRowStyle BackColor="White" />
-                                            <Columns>
-                                                <asp:BoundField DataField="SeatSection" HeaderText="Section" />
-                                                <asp:BoundField DataField="TotalSeat" HeaderText="Total Seat" />
-                                                <asp:BoundField DataField="Price" HeaderText="Price" />
-                                                <asp:TemplateField ShowHeader="False">
-                                                    <ItemTemplate>
-                                                        <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                            </Columns>
-                                            <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                                            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
-                                            <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
-                                            <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
-                                            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
-                                            <SortedAscendingCellStyle BackColor="#FDF5AC" />
-                                            <SortedAscendingHeaderStyle BackColor="#4D0000" />
-                                            <SortedDescendingCellStyle BackColor="#FCF6C0" />
-                                            <SortedDescendingHeaderStyle BackColor="#820000" />
-                                        </asp:GridView>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr>--%>
                             <tr>
                                 <td style="width: 200px; text-align: right">Category ID:</td>
                                 <td style="width: 495px; text-align: left">
