@@ -79,10 +79,12 @@ public class NVPAPICaller : System.Web.UI.Page
         encoder["PAYMENTREQUEST_0_CURRENCYCODE"] = "USD";
 
         List<CartItem> myOrderList = (List<CartItem>)Session["CartItems"];
-            
+
+        encoder["L_PAYMENTREQUEST_0_NAME"] = myOrderList[0].EventName.ToString();
+        encoder["L_PAYMENTREQUEST_0_QTY"] = myOrderList.Count.ToString();
+           
             for (int i = 0; i < myOrderList.Count; i++)
             {
-                encoder["L_PAYMENTREQUEST_0_NAME" + i] = myOrderList[i].EventName.ToString();
                 encoder["L_PAYMENTREQUEST_0_AMT" + i] = myOrderList[i].Price.ToString();
             }
 
