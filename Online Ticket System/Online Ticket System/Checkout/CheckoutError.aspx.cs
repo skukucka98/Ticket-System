@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Online_Ticket_System.Checkout
+namespace $safeprojectname$.Checkout
 {
     public partial class CheckoutError : System.Web.UI.Page
     {

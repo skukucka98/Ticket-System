@@ -7,16 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace $safeprojectname$.Checkout
 {
-    public partial class CheckoutCancel : System.Web.UI.Page
+    public partial class ConfirmationPage : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
-
-        protected void GoHome_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("../Default.aspx");
+            string password = Guid.NewGuid().ToString("N").Substring(0, 8);
+            Label1.Text = password;
+            Label3.Text=DateTime.Now.ToString("MM-dd-yyyy"); 
+            
         }
     }
 }

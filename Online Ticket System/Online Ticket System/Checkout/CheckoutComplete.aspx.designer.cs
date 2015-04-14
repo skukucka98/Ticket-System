@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Online_Ticket_System.Checkout {
+namespace $safeprojectname$.Checkout {
     
     
     public partial class CheckoutComplete {

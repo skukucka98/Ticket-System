@@ -1,4 +1,4 @@
-﻿using Online_Ticket_System.Models;
+﻿using $safeprojectname$.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Online_Ticket_System.Checkout
+namespace $safeprojectname$.Checkout
 {
     public partial class CheckoutReview : System.Web.UI.Page
     {
@@ -63,7 +63,7 @@ namespace Online_Ticket_System.Checkout
                     _db.SaveChanges();
 
                     // Get the shopping cart items and process them.
-                    using (Online_Ticket_System.Models.ShoppingCartActions usersShoppingCart = new Online_Ticket_System.Models.ShoppingCartActions())
+                    using ($safeprojectname$.Models.ShoppingCartActions usersShoppingCart = new $safeprojectname$.Models.ShoppingCartActions())
                     {
                         List<CartItem> myOrderList = usersShoppingCart.GetCartItems();
 
