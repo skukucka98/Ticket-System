@@ -54,7 +54,7 @@ namespace Online_Ticket_System.Create
             try
             {
                 string filename = Path.GetFileName(FileUpload1.FileName);
-                FileUpload1.SaveAs(Server.MapPath("~/../../Images/Events/") + filename);
+                FileUpload1.SaveAs(Server.MapPath("~/Images/Events/") + filename);
                 lbOutPut.Text = "Image" + filename + " successfully uploaded!";
                 Page_Load(sender, e);
             }
@@ -108,7 +108,6 @@ namespace Online_Ticket_System.Create
                     {
                         // Create a new DataTable
                         tempTable = new DataTable();
-
 
                         // Create a new column in gridview
                         Col = new DataColumn();
@@ -229,22 +228,24 @@ namespace Online_Ticket_System.Create
                         EventGrid.DataBind();
 
                         // Add SeatSection and eventid from gridview to SeatCategory table
-                        foreach (GridViewRow e1 in EventGrid.Rows)
+                        foreach (DataRow e1 in tempTable.Rows)
                         {
-                            string section = e1.Cells[0].Text;
-                            int eventid = Int32.Parse(e1.Cells[3].Text);
+                            int section = e1.Field<int>(0);
+                            int eventid = e1.Field<int>(3);
 
                             //SeatCategory slv = new SeatCategory(eventid, section, sstatus);
                             int scatID = Connection.AddSeatCat(eventid, section);
 
-                            Connection.AddSeat(Int32.Parse(e1.Cells[1].Text), e1.Cells[2].Text, scatID);
+                            Connection.AddSeat(e1.Field<int>(1), e1.Field<double>(2), scatID);
                         }
 
                         lbOutPut.Text = "Upload successful!";
                         ClearTextFields();
                         GridView1.DataBind();
+                        Session["SeatLeveltable"] = null;
+                        lbPrice.Text = "";
                     }
-                    catch (Exception)
+                    catch (Exception exc)
                     {
                         lbOutPut.Text = "Upload failed!";
                     }

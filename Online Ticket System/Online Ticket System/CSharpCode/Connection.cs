@@ -874,7 +874,7 @@ namespace Online_Ticket_System.CSharpCode
             }
         }
         private static int scid;
-        internal static int AddSeatCat(int eventid, string section)
+        internal static int AddSeatCat(int eventid, int section)
         {
             string query = string.Format("EXEC AddSeatCategory {0}, '{1}'", eventid, section);
             cmd.CommandText = query;
@@ -898,7 +898,7 @@ namespace Online_Ticket_System.CSharpCode
             return scid;
         }
 
-        internal static void AddSeat(int endpos, string price, int catid)
+        internal static void AddSeat(int endpos, double price, int catid)
         {
             string query = string.Format("EXEC	[dbo].[Get_SeatInfo] 1, {0}, {1}, {2}", endpos, price, catid);
             cmd.CommandText = query;
