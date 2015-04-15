@@ -49,20 +49,20 @@ namespace Online_Ticket_System.Create
         }
 
 
-        protected void btnUploadImage_Click1(object sender, EventArgs e)
-        {
-            try
-            {
-                string filename = Path.GetFileName(FileUpload1.FileName);
-                FileUpload1.SaveAs(Server.MapPath("~/Images/Events/") + filename);
-                lbOutPut.Text = "Image" + filename + " successfully uploaded!";
-                Page_Load(sender, e);
-            }
-            catch (Exception exc)
-            {
-                lbOutPut.Text = "Upload failed" + exc;
-            }
-        }
+        //protected void btnUploadImage_Click1(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        string filename = Path.GetFileName(FileUpload1.FileName);
+        //        FileUpload1.SaveAs(Server.MapPath("~/Images/Events/") + filename);
+        //        lbOutPut.Text = "Image" + filename + " successfully uploaded!";
+        //        Page_Load(sender, e);
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        lbOutPut.Text = "Upload failed" + exc;
+        //    }
+        //}
 
 
 
@@ -81,9 +81,10 @@ namespace Online_Ticket_System.Create
         protected void price_Click(object sender, EventArgs e)
         {
             double n;
-            if (!double.TryParse(txtPrice.Text, out n))
+            if (!double.TryParse(txtPrice.Text, out n) || double.Parse(txtPrice.Text) <= 0 || !Regex.IsMatch(txtPrice.Text, @"^\$?([0-9]{1,3},([0-9]{3},)*[0-9]{3}|[0-9]+)(.[0-9][0-9])?$"))
             {
                 lbPrice.Text = "Invalid Price!!";
+                lbPrice.ForeColor = Color.Red;
             }
 
             else
@@ -154,6 +155,7 @@ namespace Online_Ticket_System.Create
                         Session["SeatLeveltable"] = tempTable;
 
                         lbPrice.Text = "Upload successful!";
+                        lbPrice.ForeColor = Color.Blue;
                         //ClearSeatSection();
                         EventGrid.Visible = true;
                     }
@@ -207,11 +209,20 @@ namespace Online_Ticket_System.Create
                         //string status = txtEventStatus.Text;
                         string category = SelectEventCategory.SelectedValue;
                         string description = txtDescription.Text;
+                        string filename;
                         //string images = "/httpdocs/Images/Events/" + ddlImage.SelectedValue;
-
-                        //  string sstatus = "Available";
-
-                        Event ticket = new Event(name, date, time, venue, "Available", category, description, "TEST");
+                        try
+                        {
+                            //  string sstatus = "Available";
+                            filename = Path.GetFileName(FileUpload1.FileName);
+                            FileUpload1.SaveAs(Server.MapPath("~/Images/Events/") + filename);
+                            //lbOutPut.Text = "Image" + filename + " successfully uploaded!";
+                        }
+                        catch (Exception)
+                        {
+                            filename = "test.jpg";
+                        }
+                        Event ticket = new Event(name, date, time, venue, "Available", category, description, "../Images/Events/" + filename);
                         int eid = Connection.AddEvents(ticket);
                         tempTable = (DataTable)Session["SeatLeveltable"];
 
@@ -243,6 +254,7 @@ namespace Online_Ticket_System.Create
                         ClearTextFields();
                         GridView1.DataBind();
                         Session["SeatLeveltable"] = null;
+                        EventGrid.Visible = false;
                         lbPrice.Text = "";
                     }
                     catch (Exception exc)

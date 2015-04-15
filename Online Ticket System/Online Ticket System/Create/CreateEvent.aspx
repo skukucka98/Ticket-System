@@ -65,15 +65,13 @@
                                 <td style="width: 200px; text-align: right">Venue:</td>
                                 <td class="auto-style2" style="text-align: left">
                                     <div>
-                                        <asp:DropDownList ID="VenueIDDd" runat="server" DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="VenueID" ValidationGroup="AddEvent" AutoPostBack="True" CssClass="CrDrDown">
-                                            <asp:ListItem Selected="True" Value="Please Select a Venue">Please Select a Venue</asp:ListItem>
-                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="VenueIDDd" runat="server" DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="VenueID" ValidationGroup="AddEvent" AutoPostBack="True" CssClass="CrDrDown" Width="305px" Height="35px">                                        </asp:DropDownList>
                                         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" SelectCommand="SELECT [VenueID], [Name] FROM [tblVenue]"></asp:SqlDataSource>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="text-align:right">Section Info:</td>
+                                <td style="text-align: right">Section Info:</td>
                                 <td>
                                     <table>
                                         <tr>
@@ -83,7 +81,7 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <asp:DropDownList ID="SeatDropDown" runat="server" DataSourceID="SqlDataSource8" DataTextField="Section" DataValueField="Section" CssClass="CrSmallDrDown">
+                                                <asp:DropDownList ID="SeatDropDown" runat="server" DataSourceID="SqlDataSource8" DataTextField="Section" DataValueField="Section" CssClass="CrSmallDrDown" Width="80px">
                                                     <asp:ListItem Selected="True" Value="Please Select Seat level">Please Select Seat level</asp:ListItem>
                                                 </asp:DropDownList>
                                                 <asp:SqlDataSource ID="SqlDataSource8" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" SelectCommand="SELECT [Section], [ID] FROM [tblVenueInfo] WHERE ([VenueID] = @VenueID)">
@@ -93,11 +91,11 @@
                                                 </asp:SqlDataSource>
                                             </td>
                                             <td>
-                                                <asp:TextBox ID="txtPrice" runat="server" Width="66px" ValidationGroup="AddPrice" CssClass="btnstandard" Height="25px"></asp:TextBox>
+                                                <asp:TextBox ID="txtPrice" runat="server" Width="80px" ValidationGroup="AddPrice" CssClass="btnstandard" Height="25px"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtPrice" ValidationGroup="AddPrice"></asp:RequiredFieldValidator>
                                             </td>
                                             <td>
-                                                <asp:Button ID="price" runat="server" Text="Add" OnClick="price_Click" CssClass="CrEButt" ValidationGroup="AddPrice" />
+                                                <asp:Button ID="price" runat="server" Text="Add" OnClick="price_Click" CssClass="CrEButt" ValidationGroup="AddPrice" Height="35px" Width="80px"/>
                                             </td>
                                         </tr>
                                         <tr>
@@ -107,7 +105,7 @@
                                             <td></td>
                                         </tr>
                                         <tr>
-                                            <td colspan="2">
+                                            <td colspan="3">
                                                 <asp:GridView ID="EventGrid" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowDeleting="EventGrid_RowDeleting">
                                                     <AlternatingRowStyle BackColor="White" />
                                                     <Columns>
@@ -116,7 +114,7 @@
                                                         <asp:BoundField DataField="Price" HeaderText="Price" />
                                                         <asp:TemplateField ShowHeader="False">
                                                             <ItemTemplate>
-                                                                <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
+                                                                <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="btnstandard" ForeColor="white" BackColor="Red" Height="30px"/>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>
@@ -131,7 +129,6 @@
                                                     <SortedDescendingHeaderStyle BackColor="#820000" />
                                                 </asp:GridView>
                                             </td>
-                                            <td></td>
                                         </tr>
                                     </table>
                                 </td>
@@ -153,11 +150,10 @@ s                            <tr>
                                 </td>
                             </tr>--%>
                             <tr>
-                                <td style="width: 200px; text-align: right">Category ID:</td>
+                                <td style="width: 200px; text-align: right">Category:</td>
                                 <td style="width: 495px; text-align: left">
 
-                                    <asp:DropDownList ID="SelectEventCategory" runat="server" DataSourceID="SqlDataSource3" DataTextField="Name" DataValueField="EventCategoryID" ValidationGroup="AddEvent" CssClass="CrDrDown">
-                                        <asp:ListItem Selected="True">Please Select a Category</asp:ListItem>
+                                    <asp:DropDownList ID="SelectEventCategory" runat="server" DataSourceID="SqlDataSource3" DataTextField="Name" DataValueField="EventCategoryID" ValidationGroup="AddEvent" CssClass="CrDrDown" Width="305px" Height="35px">
                                     </asp:DropDownList>
                                     <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" SelectCommand="SELECT [EventCategoryID], [Name] FROM [tblEventCategory] WHERE ([ParentCategoryID] IS NOT NULL)"></asp:SqlDataSource>
                                 </td>
@@ -166,7 +162,7 @@ s                            <tr>
                                 <td style="width: 200px; text-align: right">Image:</td>
                                 <td style="width: 495px; text-align: left">
                                     <asp:FileUpload ID="FileUpload1" runat="server" />
-                                    <asp:Button ID="btnUploadImage" runat="server" Text="Upload" OnClick="btnUploadImage_Click1" CssClass="CrEButt" />
+                                    <%--<asp:Button ID="btnUploadImage" runat="server" Text="Upload" OnClick="btnUploadImage_Click1" CssClass="CrEButt" />--%>
                                 </td>
 
                             </tr>
@@ -182,7 +178,7 @@ s                            <tr>
                             <tr>
                                 <td></td>
                                 <td style="text-align: left">
-                                    <asp:Button ID="buttonSave" runat="server" Text="Save" OnClick="buttonSave_Click" ValidationGroup="AddEvent" CssClass="CrEButt" />
+                                    <asp:Button ID="buttonSave" runat="server" Text="Save" OnClick="buttonSave_Click" ValidationGroup="AddEvent" CssClass="CrEButt" Height="40px"/>
                                 </td>
                             </tr>
                             <tr>
@@ -223,7 +219,7 @@ s                            <tr>
                                                     <ItemTemplate>
                                                         <asp:Label ID="Label2" runat="server" Text='<%# Bind("SubCategory") %>'></asp:Label>
                                                     </ItemTemplate>
-                                                    <ControlStyle Width="200px" />
+                                                    <ControlStyle Width="150px" />
 
                                                     <HeaderStyle HorizontalAlign="Left"></HeaderStyle>
 
@@ -231,7 +227,7 @@ s                            <tr>
                                                 </asp:TemplateField>
                                                 <asp:BoundField DataField="EventDate" HeaderText="EventDate" SortExpression="EventDate" DataFormatString="{0:d}" />
                                                 <asp:BoundField DataField="EventTime" HeaderText="EventTime" SortExpression="EventTime" />
-                                                <asp:BoundField DataField="Status" HeaderText="Status" />
+                                                <asp:BoundField DataField="Status" HeaderText="Status" ItemStyle-Width="200px" />
                                                 <asp:TemplateField HeaderText="Manage" ShowHeader="False">
                                                     <ItemTemplate>
                                                         <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Select" Text="Detail" CssClass="btnstandard" Width="75" Height="35" />
@@ -322,7 +318,8 @@ s                            <tr>
                                                             <asp:TemplateField HeaderText="Venue" SortExpression="Venue">
                                                                 <EditItemTemplate>
                                                                     <%--<asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Venue") %>'></asp:TextBox>--%>
-                                                                    <asp:DropDownList ID="TextBox3" runat="server" SelectedValue='<%# Bind("Venue") %>' DataSourceID="SqlDataSource5" DataTextField="Venue" DataValueField="Venue" CssClass="btnstandard" Width="250px"></asp:DropDownList>
+                                                                    <%--                                                                    <asp:DropDownList ID="TextBox3" runat="server" SelectedValue='<%# Bind("Venue") %>' DataSourceID="SqlDataSource5" DataTextField="Venue" DataValueField="Venue" CssClass="btnstandard" Width="250px"></asp:DropDownList>--%>
+                                                                    <asp:Label ID="Label3_1" runat="server" Text='<%# Bind("Venue") %>'></asp:Label>
                                                                 </EditItemTemplate>
                                                                 <InsertItemTemplate>
                                                                     <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Venue") %>'></asp:TextBox>
@@ -358,6 +355,17 @@ s                            <tr>
                                                                     <asp:Label ID="Label7" runat="server" Text='<%# Bind("status") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="picture" SortExpression="picture">
+                                                                <EditItemTemplate>
+                                                                    <asp:Label ID="Label8" runat="server" Text='<%# Bind("picture") %>'></asp:Label>
+                                                                </EditItemTemplate>
+                                                                <InsertItemTemplate>
+                                                                    <asp:TextBox ID="TextBox8" runat="server" Text='<%# Bind("picture") %>'></asp:TextBox>
+                                                                </InsertItemTemplate>
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="Label8" runat="server" Text='<%# Bind("picture") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Description" SortExpression="Description">
                                                                 <EditItemTemplate>
                                                                     <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Description") %>' CssClass="btnstandard" Width="250px" Height="100px" TextMode="MultiLine"></asp:TextBox>
@@ -385,7 +393,8 @@ s                            <tr>
                                                         <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
                                                         <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
                                                     </asp:DetailsView>
-                                                    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" DeleteCommand="DELETE FROM dbo.tblEvent WHERE (EventID = @EventID)" SelectCommand="SELECT EventID, e.Name, EventDate, EventTime, v.name as Venue, c.name as SubCategory, e.Description, e.status FROM dbo.tblEvent e
+                                                    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" DeleteCommand="DELETE FROM dbo.tblEvent WHERE (EventID = @EventID)" SelectCommand="SELECT EventID, e.Name, EventDate, EventTime, v.name as Venue, c.name as SubCategory, e.Description, e.status , e.[picture]
+FROM dbo.tblEvent e
                                                                                                 INNER JOIN dbo.tblVenue v on v.Venueid = e.Venueid 
                                                                                                 INNER JOIN dbo.tblEventCategory c on c.EventCategoryid = e.Categoryid
                                                                                                 WHERE (EventID = @EventID)"

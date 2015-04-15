@@ -754,6 +754,7 @@ namespace Online_Ticket_System.CSharpCode
                     e.Desc = reader.GetString(6);
                     e.Picture = reader.GetString(7);
                     e.Venue = reader.GetString(8);
+                    e.SeatingChart = reader.GetString(9);
                     list.Add(e);
                 }
             }
@@ -825,7 +826,7 @@ namespace Online_Ticket_System.CSharpCode
         internal static int AddVenue(Venue venue)
         {
             ArrayList slv = new ArrayList();
-            string query = string.Format("EXEC [AddVenue] '{0}' ,'{1}', '{2}', '{3}', '{4}', '{5}', '{6}'", venue.Name, venue.Address1, venue.Address2, venue.City, venue.State, venue.Zip, venue.Desc);
+            string query = string.Format("EXEC [AddVenue] '{0}' ,'{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}'", venue.Name, venue.Address1, venue.Address2, venue.City, venue.State, venue.Zip, venue.Desc, venue.SeatingChart);
 
      
 

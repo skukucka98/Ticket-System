@@ -175,6 +175,15 @@ namespace Online_Ticket_System.Create {
         protected global::System.Web.UI.WebControls.GridView VenueGrid;
         
         /// <summary>
+        /// FileUpload1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
+        
+        /// <summary>
         /// txtvenueDescription control.
         /// </summary>
         /// <remarks>

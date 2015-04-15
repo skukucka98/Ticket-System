@@ -40,6 +40,7 @@ namespace Online_Ticket_System.Display
                 E_Desc.Text = e.Desc;
                 E_DetImage.ImageUrl = e.Picture;
                 E_DetImage.PostBackUrl = "../Display/E_Detail.aspx?id=" + e.ID;
+                ImageButton.ImageUrl = e.SeatingChart;
             }
         }
 

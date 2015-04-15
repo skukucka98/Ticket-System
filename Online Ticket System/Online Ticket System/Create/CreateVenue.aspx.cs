@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -41,13 +42,15 @@ namespace Online_Ticket_System.Create
         protected void AddSeat_Click(object sender, EventArgs e)
         {
             int n;
-            if (!int.TryParse(txtSeatSection.Text, out n))
+            if (!int.TryParse(txtSeatSection.Text, out n) || Int32.Parse(txtSeatSection.Text) <=0)
             {
                 lbSeatOutput.Text = "Invalid Section Number.";
+                lbSeatOutput.ForeColor = Color.Red;
             }
-            else if (!int.TryParse(txtTotalSeat.Text, out n))
+            else if (!int.TryParse(txtTotalSeat.Text, out n) || Int32.Parse(txtTotalSeat.Text) <=0)
             {
                 lbSeatOutput.Text = "Invalid total seat.";
+                lbSeatOutput.ForeColor = Color.Red;
             }
             else
             {
@@ -131,6 +134,7 @@ namespace Online_Ticket_System.Create
 
         protected void venueSave_Click(object sender, EventArgs e)
         {
+            lbSeatOutput.Text = "";
             if (Session["Mytable"] == null)
             {
                 this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('The Venue do not contain any section. Please add section and try it again.')", true);
@@ -147,7 +151,7 @@ namespace Online_Ticket_System.Create
                     venueOutput.ForeColor = Color.Red;
                     vengrid.Visible = true;
                 }
-                else if (txtZip.Text.Replace(" ", string.Empty).Length != 5 || !int.TryParse(txtZip.Text, out n))
+                else if (txtZip.Text.Replace(" ", string.Empty).Length != 5 || !int.TryParse(txtZip.Text, out n) || Int32.Parse(txtZip.Text)<=0)
                 {
                     venueOutput.Text = "Invalid zipcode.";
                     venueOutput.Visible = true;
@@ -169,9 +173,20 @@ namespace Online_Ticket_System.Create
                         string state = txtState.SelectedValue;
                         string zipcode = txtZip.Text.Replace(" ", string.Empty);
                         string description = txtvenueDescription.Text;
+                        string filename;
+                        try
+                        {
+                            //  string sstatus = "Available";
+                            filename = Path.GetFileName(FileUpload1.FileName);
+                            FileUpload1.SaveAs(Server.MapPath("~/Images/Seating Map/") + filename);
+                            //lbOutPut.Text = "Image" + filename + " successfully uploaded!";
+                        }
+                        catch (Exception)
+                        {
+                            filename = "test.jpg";
+                        }
 
-
-                        Venue venue = new Venue(name, address1, address2, city, state, zipcode, description);
+                        Venue venue = new Venue(name, address1, address2, city, state, zipcode, description, "../Images/Seating Map/" + filename);
                         int id = Connection.AddVenue(venue);
 
                         DataColumn nc;
@@ -263,7 +278,7 @@ namespace Online_Ticket_System.Create
         protected void CustomValidator_ServerValidate(object source, ServerValidateEventArgs args)
         {
             int n;
-            args.IsValid = args.Value.Replace(" ", string.Empty).Length == 5 && int.TryParse(args.Value, out n);
+            args.IsValid = args.Value.Replace(" ", string.Empty).Length == 5 && int.TryParse(args.Value, out n) && Int32.Parse(args.Value) > 0;
         }
 
         protected void GridView1_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)

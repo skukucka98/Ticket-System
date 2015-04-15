@@ -116,8 +116,8 @@
                                 <td style="width: 200px; text-align: right">Zip Code:</td>
                                 <td style="width: 495px">
                                     <asp:TextBox ID="txtZip" runat="server" Width="330px" ValidationGroup="AddVenue" CssClass="CRVBox" TextMode="Number"></asp:TextBox>
-
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="txtZip" ErrorMessage="*" ValidationGroup="AddVenue" ForeColor="Red"></asp:RequiredFieldValidator>
+
                                 </td>
                             </tr>
 
@@ -184,7 +184,13 @@
                                     </div>
                                 </td>
                             </tr>
+                            <tr>
+                                <td style="width: 200px; text-align: right">Seating Chart:</td>
+                                <td style="width: 495px; text-align: left; height:20px">
+                                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                                </td>
 
+                            </tr>
                             <tr>
                                 <td style="width: 200px; text-align: right">Description: </td>
                                 <td style="width: 495px">
@@ -256,7 +262,7 @@
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-                
+
                 <asp:Panel ID="Panel1" runat="server" CssClass="Popup">
                     <div style="background-color: lightgray">
                         <div style="position: relative; margin-bottom: 3px; top: 3px; margin-right: 10px; text-align: right;">
@@ -265,259 +271,270 @@
                             </cc1:ModalPopupExtender>
                         </div>
                         <div>
-                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                            <ContentTemplate>
-                                <div style="max-height:500px;overflow:auto; margin-left:5px;margin-right:auto">
-                                    <%--<h3 style="text-decoration: underline">Venue Detail</h3>--%>
-                                    <asp:DetailsView ID="VenDetail" runat="server" Height="50px" Width="590px" 
-                                        AutoGenerateRows="False" DataSourceID="SqlDataSource2" 
-                                        BackColor="White" BorderColor="#E7E7FF" BorderStyle="None" 
-                                        BorderWidth="1px" CellPadding="3" GridLines="Horizontal" 
-                                        DataKeyNames="VenueID" 
-                                        OnItemUpdated="VenDetail_ItemUpdated" 
-                                        OnItemDeleted="VenDetail_ItemDeleted">
-                                        <AlternatingRowStyle BackColor="#F7F7F7"/>
-                                        <EditRowStyle Font-Bold="True" ForeColor="Black" Width="500px"/>
-                                        <Fields>
-                                            <asp:TemplateField HeaderText="Name" SortExpression="Name">
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Name") %>' CssClass="btnstandard" Width="300px" Height="20px"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="TextBox5"></asp:RequiredFieldValidator>
-                                                </EditItemTemplate>
-                                                <InsertItemTemplate>
-                                                    <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
-                                                </InsertItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="Label5" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <%--<ControlStyle CssClass="btnstandard" Height="30px" Width="300px" />--%>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Address1" SortExpression="Address1">
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Address1") %>' CssClass="btnstandard" Width="300px" Height="20px"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="TextBox6"></asp:RequiredFieldValidator>
-                                                </EditItemTemplate>
-                                                <InsertItemTemplate>
-                                                    <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Address1") %>'></asp:TextBox>
-                                                </InsertItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="Label6" runat="server" Text='<%# Bind("Address1") %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <%--<ControlStyle CssClass="btnstandard" Height="30px" Width="300px" />--%>
-                                            </asp:TemplateField>
-                                            <asp:BoundField DataField="Address2" HeaderText="Address2" SortExpression="Address2" ControlStyle-CssClass="btnstandard" ControlStyle-Width="300px" ControlStyle-Height="20px">
-                                                <ControlStyle CssClass="btnstandard" />
-                                            </asp:BoundField>
-                                            <asp:TemplateField HeaderText="City" SortExpression="City">
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("City") %>' CssClass="btnstandard" Width="300px" Height="20px"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="TextBox2"></asp:RequiredFieldValidator>
-                                                    <asp:CustomValidator ID="CustomValidator1" runat="server"
-                                                        ErrorMessage="Invalid City"
-                                                        ControlToValidate="TextBox2"
-                                                        ForeColor="Red"
-                                                        OnServerValidate="TextValidate"></asp:CustomValidator>
+                            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                                <ContentTemplate>
+                                    <div style="max-height: 500px; overflow: auto; margin-left: 5px; margin-right: auto">
+                                        <%--<h3 style="text-decoration: underline">Venue Detail</h3>--%>
+                                        <asp:DetailsView ID="VenDetail" runat="server" Height="50px" Width="590px"
+                                            AutoGenerateRows="False" DataSourceID="SqlDataSource2"
+                                            BackColor="White" BorderColor="#E7E7FF" BorderStyle="None"
+                                            BorderWidth="1px" CellPadding="3" GridLines="Horizontal"
+                                            DataKeyNames="VenueID"
+                                            OnItemUpdated="VenDetail_ItemUpdated"
+                                            OnItemDeleted="VenDetail_ItemDeleted">
+                                            <AlternatingRowStyle BackColor="#F7F7F7" />
+                                            <EditRowStyle Font-Bold="True" ForeColor="Black" Width="500px" />
+                                            <Fields>
+                                                <asp:TemplateField HeaderText="Name" SortExpression="Name">
+                                                    <EditItemTemplate>
+                                                        <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Name") %>' CssClass="btnstandard" Width="300px" Height="20px"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="TextBox5"></asp:RequiredFieldValidator>
+                                                    </EditItemTemplate>
+                                                    <InsertItemTemplate>
+                                                        <asp:TextBox ID="TextBox5" runat="server" Text='<%# Bind("Name") %>'></asp:TextBox>
+                                                    </InsertItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label5" runat="server" Text='<%# Bind("Name") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <%--<ControlStyle CssClass="btnstandard" Height="30px" Width="300px" />--%>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Address1" SortExpression="Address1">
+                                                    <EditItemTemplate>
+                                                        <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Address1") %>' CssClass="btnstandard" Width="300px" Height="20px"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="TextBox6"></asp:RequiredFieldValidator>
+                                                    </EditItemTemplate>
+                                                    <InsertItemTemplate>
+                                                        <asp:TextBox ID="TextBox6" runat="server" Text='<%# Bind("Address1") %>'></asp:TextBox>
+                                                    </InsertItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label6" runat="server" Text='<%# Bind("Address1") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <%--<ControlStyle CssClass="btnstandard" Height="30px" Width="300px" />--%>
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="Address2" HeaderText="Address2" SortExpression="Address2" ControlStyle-CssClass="btnstandard" ControlStyle-Width="300px" ControlStyle-Height="20px">
+                                                    <ControlStyle CssClass="btnstandard" />
+                                                </asp:BoundField>
+                                                <asp:TemplateField HeaderText="City" SortExpression="City">
+                                                    <EditItemTemplate>
+                                                        <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("City") %>' CssClass="btnstandard" Width="300px" Height="20px"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="TextBox2"></asp:RequiredFieldValidator>
+                                                        <asp:CustomValidator ID="CustomValidator1" runat="server"
+                                                            ErrorMessage="Invalid City"
+                                                            ControlToValidate="TextBox2"
+                                                            ForeColor="Red"
+                                                            OnServerValidate="TextValidate"></asp:CustomValidator>
 
-                                                </EditItemTemplate>
-                                                <InsertItemTemplate>
-                                                    <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("City") %>'></asp:TextBox>
-                                                </InsertItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("City") %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="State" SortExpression="State">
-                                                <EditItemTemplate>
-                                                    <asp:DropDownList ID="TextBox1" runat="server" SelectedValue='<%# Bind("State") %>' Width="303px" Height="30px" CssClass="btnstandard">
-                                                        <asp:ListItem Value="AL">Alabama</asp:ListItem>
-                                                        <asp:ListItem Value="AK">Alaska</asp:ListItem>
-                                                        <asp:ListItem Value="AZ">Arizona</asp:ListItem>
-                                                        <asp:ListItem Value="AK">Arkansas</asp:ListItem>
-                                                        <asp:ListItem Value="CA">California</asp:ListItem>
-                                                        <asp:ListItem Value="CO">Colorado</asp:ListItem>
-                                                        <asp:ListItem Value="CT">Connecticut</asp:ListItem>
-                                                        <asp:ListItem Value="DE">Delaware</asp:ListItem>
-                                                        <asp:ListItem Value="FL">Florida</asp:ListItem>
-                                                        <asp:ListItem Value="GA">Georgia</asp:ListItem>
-                                                        <asp:ListItem Value="HI">Hawaii</asp:ListItem>
-                                                        <asp:ListItem Value="ID">Idaho</asp:ListItem>
-                                                        <asp:ListItem Value="IL">Illinois</asp:ListItem>
-                                                        <asp:ListItem Value="IN">Indiana</asp:ListItem>
-                                                        <asp:ListItem Value="IA">Iowa</asp:ListItem>
-                                                        <asp:ListItem Value="KS">Kansas</asp:ListItem>
-                                                        <asp:ListItem Value="KY">Kentucky</asp:ListItem>
-                                                        <asp:ListItem Value="LA">Louisiana</asp:ListItem>
-                                                        <asp:ListItem Value="ME">Maine</asp:ListItem>
-                                                        <asp:ListItem Value="MD">Maryland</asp:ListItem>
-                                                        <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
-                                                        <asp:ListItem Value="MI">Michigan</asp:ListItem>
-                                                        <asp:ListItem Value="MN">Minesota</asp:ListItem>
-                                                        <asp:ListItem Value="MS">Mississippi</asp:ListItem>
-                                                        <asp:ListItem Value="MO">Missouri</asp:ListItem>
-                                                        <asp:ListItem Value="MT">Montana</asp:ListItem>
-                                                        <asp:ListItem Value="NV">Nevada</asp:ListItem>
-                                                        <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
-                                                        <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
-                                                        <asp:ListItem Value="NM">New Mexico</asp:ListItem>
-                                                        <asp:ListItem Value="NY">New York</asp:ListItem>
-                                                        <asp:ListItem Value="NC">North Carolina</asp:ListItem>
-                                                        <asp:ListItem Value="ND">North Dakota</asp:ListItem>
-                                                        <asp:ListItem Value="OH">Ohio</asp:ListItem>
-                                                        <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
-                                                        <asp:ListItem Value="OR">Oregon</asp:ListItem>
-                                                        <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
-                                                        <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
-                                                        <asp:ListItem Value="SC">South Carolina</asp:ListItem>
-                                                        <asp:ListItem Value="SD">South Dakota</asp:ListItem>
-                                                        <asp:ListItem Value="TN">Tennessee</asp:ListItem>
-                                                        <asp:ListItem Value="TX">Texas</asp:ListItem>
-                                                        <asp:ListItem Value="UT">Utah</asp:ListItem>
-                                                        <asp:ListItem Value="VT">Vermont</asp:ListItem>
-                                                        <asp:ListItem Value="VA">Virginia</asp:ListItem>
-                                                        <asp:ListItem Value="WA">Washington</asp:ListItem>
-                                                        <asp:ListItem Value="WV">West Virginia</asp:ListItem>
-                                                        <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
-                                                        <asp:ListItem Value="WY">Wyoming</asp:ListItem>
-                                                    </asp:DropDownList>
+                                                    </EditItemTemplate>
+                                                    <InsertItemTemplate>
+                                                        <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("City") %>'></asp:TextBox>
+                                                    </InsertItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("City") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="State" SortExpression="State">
+                                                    <EditItemTemplate>
+                                                        <asp:DropDownList ID="TextBox1" runat="server" SelectedValue='<%# Bind("State") %>' Width="303px" Height="30px" CssClass="btnstandard">
+                                                            <asp:ListItem Value="AL">Alabama</asp:ListItem>
+                                                            <asp:ListItem Value="AK">Alaska</asp:ListItem>
+                                                            <asp:ListItem Value="AZ">Arizona</asp:ListItem>
+                                                            <asp:ListItem Value="AK">Arkansas</asp:ListItem>
+                                                            <asp:ListItem Value="CA">California</asp:ListItem>
+                                                            <asp:ListItem Value="CO">Colorado</asp:ListItem>
+                                                            <asp:ListItem Value="CT">Connecticut</asp:ListItem>
+                                                            <asp:ListItem Value="DE">Delaware</asp:ListItem>
+                                                            <asp:ListItem Value="FL">Florida</asp:ListItem>
+                                                            <asp:ListItem Value="GA">Georgia</asp:ListItem>
+                                                            <asp:ListItem Value="HI">Hawaii</asp:ListItem>
+                                                            <asp:ListItem Value="ID">Idaho</asp:ListItem>
+                                                            <asp:ListItem Value="IL">Illinois</asp:ListItem>
+                                                            <asp:ListItem Value="IN">Indiana</asp:ListItem>
+                                                            <asp:ListItem Value="IA">Iowa</asp:ListItem>
+                                                            <asp:ListItem Value="KS">Kansas</asp:ListItem>
+                                                            <asp:ListItem Value="KY">Kentucky</asp:ListItem>
+                                                            <asp:ListItem Value="LA">Louisiana</asp:ListItem>
+                                                            <asp:ListItem Value="ME">Maine</asp:ListItem>
+                                                            <asp:ListItem Value="MD">Maryland</asp:ListItem>
+                                                            <asp:ListItem Value="MA">Massachusetts</asp:ListItem>
+                                                            <asp:ListItem Value="MI">Michigan</asp:ListItem>
+                                                            <asp:ListItem Value="MN">Minesota</asp:ListItem>
+                                                            <asp:ListItem Value="MS">Mississippi</asp:ListItem>
+                                                            <asp:ListItem Value="MO">Missouri</asp:ListItem>
+                                                            <asp:ListItem Value="MT">Montana</asp:ListItem>
+                                                            <asp:ListItem Value="NV">Nevada</asp:ListItem>
+                                                            <asp:ListItem Value="NH">New Hampshire</asp:ListItem>
+                                                            <asp:ListItem Value="NJ">New Jersey</asp:ListItem>
+                                                            <asp:ListItem Value="NM">New Mexico</asp:ListItem>
+                                                            <asp:ListItem Value="NY">New York</asp:ListItem>
+                                                            <asp:ListItem Value="NC">North Carolina</asp:ListItem>
+                                                            <asp:ListItem Value="ND">North Dakota</asp:ListItem>
+                                                            <asp:ListItem Value="OH">Ohio</asp:ListItem>
+                                                            <asp:ListItem Value="OK">Oklahoma</asp:ListItem>
+                                                            <asp:ListItem Value="OR">Oregon</asp:ListItem>
+                                                            <asp:ListItem Value="PA">Pennsylvania</asp:ListItem>
+                                                            <asp:ListItem Value="RI">Rhode Island</asp:ListItem>
+                                                            <asp:ListItem Value="SC">South Carolina</asp:ListItem>
+                                                            <asp:ListItem Value="SD">South Dakota</asp:ListItem>
+                                                            <asp:ListItem Value="TN">Tennessee</asp:ListItem>
+                                                            <asp:ListItem Value="TX">Texas</asp:ListItem>
+                                                            <asp:ListItem Value="UT">Utah</asp:ListItem>
+                                                            <asp:ListItem Value="VT">Vermont</asp:ListItem>
+                                                            <asp:ListItem Value="VA">Virginia</asp:ListItem>
+                                                            <asp:ListItem Value="WA">Washington</asp:ListItem>
+                                                            <asp:ListItem Value="WV">West Virginia</asp:ListItem>
+                                                            <asp:ListItem Value="WI">Wisconsin</asp:ListItem>
+                                                            <asp:ListItem Value="WY">Wyoming</asp:ListItem>
+                                                        </asp:DropDownList>
 
-                                                </EditItemTemplate>
-                                                <InsertItemTemplate>
-                                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("State") %>'></asp:TextBox>
-                                                </InsertItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("State") %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="ZipCode" SortExpression="ZipCode">
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("ZipCode") %>' CssClass="btnstandard" Width="300px" Height="20px"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="TextBox3"></asp:RequiredFieldValidator>
-                                                    <asp:CustomValidator ID="CustomValidator" runat="server"
-                                                        ErrorMessage="Invalid Zipcode"
-                                                        ControlToValidate="TextBox3"
-                                                        ForeColor="Red"
-                                                        OnServerValidate="CustomValidator_ServerValidate">
-                                                    </asp:CustomValidator>
-                                                </EditItemTemplate>
-                                                <InsertItemTemplate>
-                                                    <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("ZipCode") %>'></asp:TextBox>
-                                                </InsertItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("ZipCode") %>'></asp:Label>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Venue Info">
-                                                <EditItemTemplate>
-                                                    <asp:GridView ID="VeninfoDetail" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource3" CellPadding="4" ForeColor="#333333" GridLines="None" Width="400px" ShowFooter="True">
-                                                        <AlternatingRowStyle BackColor="White"></AlternatingRowStyle>
-                                                        <Columns>
-                                                            <asp:BoundField DataField="Section" HeaderText="Section" SortExpression="Section" ItemStyle-HorizontalAlign="Center">
-                                                                <ItemStyle HorizontalAlign="Center" />
-                                                            </asp:BoundField>
-                                                            <asp:BoundField DataField="SeatTotal" HeaderText="SeatTotal" SortExpression="SeatTotal" ItemStyle-HorizontalAlign="Center">
-                                                                <ItemStyle HorizontalAlign="Center" />
-                                                            </asp:BoundField>
-                                                            <asp:TemplateField HeaderText="Manage" ShowHeader="False" ItemStyle-HorizontalAlign="Center">
-                                                                <EditItemTemplate>
-                                                                    <asp:Button ID="Button1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="C_PTButt" BackColor="Green" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to update this venue?')" />
-                                                                    <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="C_PTButt" />
-                                                                </EditItemTemplate>
-                                                                <ItemTemplate>
-                                                                    <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="C_PTButt" BackColor="#33ccff" ForeColor="White" />
-                                                                    <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="C_PTButt" BackColor="Red" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to permanently delete this venue?')" />
-                                                                </ItemTemplate>
-                                                                <ItemStyle HorizontalAlign="Center" />
-                                                            </asp:TemplateField>
-                                                        </Columns>
+                                                    </EditItemTemplate>
+                                                    <InsertItemTemplate>
+                                                        <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("State") %>'></asp:TextBox>
+                                                    </InsertItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("State") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="ZipCode" SortExpression="ZipCode">
+                                                    <EditItemTemplate>
+                                                        <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("ZipCode") %>' CssClass="btnstandard" Width="300px" Height="20px"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="TextBox3"></asp:RequiredFieldValidator>
+                                                        <asp:CustomValidator ID="CustomValidator" runat="server"
+                                                            ErrorMessage="Invalid Zipcode"
+                                                            ControlToValidate="TextBox3"
+                                                            ForeColor="Red"
+                                                            OnServerValidate="CustomValidator_ServerValidate">
+                                                        </asp:CustomValidator>
+                                                    </EditItemTemplate>
+                                                    <InsertItemTemplate>
+                                                        <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("ZipCode") %>'></asp:TextBox>
+                                                    </InsertItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label3" runat="server" Text='<%# Bind("ZipCode") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Venue Info">
+                                                    <EditItemTemplate>
+                                                        <asp:GridView ID="VeninfoDetail" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource3" CellPadding="4" ForeColor="#333333" GridLines="None" Width="400px" ShowFooter="True">
+                                                            <AlternatingRowStyle BackColor="White"></AlternatingRowStyle>
+                                                            <Columns>
+                                                                <asp:BoundField DataField="Section" HeaderText="Section" SortExpression="Section" ItemStyle-HorizontalAlign="Center">
+                                                                    <ItemStyle HorizontalAlign="Center" />
+                                                                </asp:BoundField>
+                                                                <asp:BoundField DataField="SeatTotal" HeaderText="SeatTotal" SortExpression="SeatTotal" ItemStyle-HorizontalAlign="Center">
+                                                                    <ItemStyle HorizontalAlign="Center" />
+                                                                </asp:BoundField>
+                                                                <asp:TemplateField HeaderText="Manage" ShowHeader="False" ItemStyle-HorizontalAlign="Center">
+                                                                    <EditItemTemplate>
+                                                                        <asp:Button ID="Button1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="C_PTButt" BackColor="Green" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to update this venue?')" />
+                                                                        <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="C_PTButt" />
+                                                                    </EditItemTemplate>
+                                                                    <ItemTemplate>
+                                                                        <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="C_PTButt" BackColor="#33ccff" ForeColor="White" />
+                                                                        <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="C_PTButt" BackColor="Red" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to permanently delete this venue?')" />
+                                                                    </ItemTemplate>
+                                                                    <ItemStyle HorizontalAlign="Center" />
+                                                                </asp:TemplateField>
+                                                            </Columns>
 
-                                                        <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White"></FooterStyle>
+                                                            <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White"></FooterStyle>
 
-                                                        <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White"></HeaderStyle>
+                                                            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White"></HeaderStyle>
 
-                                                        <PagerStyle HorizontalAlign="Center" BackColor="#FFCC66" ForeColor="#333333"></PagerStyle>
+                                                            <PagerStyle HorizontalAlign="Center" BackColor="#FFCC66" ForeColor="#333333"></PagerStyle>
 
-                                                        <RowStyle BackColor="#FFFBD6" ForeColor="#333333"></RowStyle>
+                                                            <RowStyle BackColor="#FFFBD6" ForeColor="#333333"></RowStyle>
 
-                                                        <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy"></SelectedRowStyle>
+                                                            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy"></SelectedRowStyle>
 
-                                                        <SortedAscendingCellStyle BackColor="#FDF5AC"></SortedAscendingCellStyle>
+                                                            <SortedAscendingCellStyle BackColor="#FDF5AC"></SortedAscendingCellStyle>
 
-                                                        <SortedAscendingHeaderStyle BackColor="#4D0000"></SortedAscendingHeaderStyle>
+                                                            <SortedAscendingHeaderStyle BackColor="#4D0000"></SortedAscendingHeaderStyle>
 
-                                                        <SortedDescendingCellStyle BackColor="#FCF6C0"></SortedDescendingCellStyle>
+                                                            <SortedDescendingCellStyle BackColor="#FCF6C0"></SortedDescendingCellStyle>
 
-                                                        <SortedDescendingHeaderStyle BackColor="#820000"></SortedDescendingHeaderStyle>
-                                                    </asp:GridView>
+                                                            <SortedDescendingHeaderStyle BackColor="#820000"></SortedDescendingHeaderStyle>
+                                                        </asp:GridView>
 
-                                                </EditItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:GridView ID="Ven_infoDetail" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource3" CellPadding="4" ForeColor="#333333" GridLines="None" Width="300px">
-                                                        <AlternatingRowStyle BackColor="White"></AlternatingRowStyle>
-                                                        <Columns>
-                                                            <asp:BoundField DataField="Section" HeaderText="Section" SortExpression="Section" ItemStyle-HorizontalAlign="Center">
-                                                                <ItemStyle HorizontalAlign="Center" />
-                                                            </asp:BoundField>
-                                                            <asp:BoundField DataField="SeatTotal" HeaderText="SeatTotal" SortExpression="SeatTotal" ItemStyle-HorizontalAlign="Center">
-                                                                <ItemStyle HorizontalAlign="Center" />
-                                                            </asp:BoundField>
-                                                        </Columns>
+                                                    </EditItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:GridView ID="Ven_infoDetail" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource3" CellPadding="4" ForeColor="#333333" GridLines="None" Width="300px">
+                                                            <AlternatingRowStyle BackColor="White"></AlternatingRowStyle>
+                                                            <Columns>
+                                                                <asp:BoundField DataField="Section" HeaderText="Section" SortExpression="Section" ItemStyle-HorizontalAlign="Center">
+                                                                    <ItemStyle HorizontalAlign="Center" />
+                                                                </asp:BoundField>
+                                                                <asp:BoundField DataField="SeatTotal" HeaderText="SeatTotal" SortExpression="SeatTotal" ItemStyle-HorizontalAlign="Center">
+                                                                    <ItemStyle HorizontalAlign="Center" />
+                                                                </asp:BoundField>
+                                                            </Columns>
 
-                                                        <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White"></FooterStyle>
+                                                            <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White"></FooterStyle>
 
-                                                        <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White"></HeaderStyle>
+                                                            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White"></HeaderStyle>
 
-                                                        <PagerStyle HorizontalAlign="Center" BackColor="#FFCC66" ForeColor="#333333"></PagerStyle>
+                                                            <PagerStyle HorizontalAlign="Center" BackColor="#FFCC66" ForeColor="#333333"></PagerStyle>
 
-                                                        <RowStyle BackColor="#FFFBD6" ForeColor="#333333"></RowStyle>
+                                                            <RowStyle BackColor="#FFFBD6" ForeColor="#333333"></RowStyle>
 
-                                                        <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy"></SelectedRowStyle>
+                                                            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy"></SelectedRowStyle>
 
-                                                        <SortedAscendingCellStyle BackColor="#FDF5AC"></SortedAscendingCellStyle>
+                                                            <SortedAscendingCellStyle BackColor="#FDF5AC"></SortedAscendingCellStyle>
 
-                                                        <SortedAscendingHeaderStyle BackColor="#4D0000"></SortedAscendingHeaderStyle>
+                                                            <SortedAscendingHeaderStyle BackColor="#4D0000"></SortedAscendingHeaderStyle>
 
-                                                        <SortedDescendingCellStyle BackColor="#FCF6C0"></SortedDescendingCellStyle>
+                                                            <SortedDescendingCellStyle BackColor="#FCF6C0"></SortedDescendingCellStyle>
 
-                                                        <SortedDescendingHeaderStyle BackColor="#820000"></SortedDescendingHeaderStyle>
-                                                    </asp:GridView>
+                                                            <SortedDescendingHeaderStyle BackColor="#820000"></SortedDescendingHeaderStyle>
+                                                        </asp:GridView>
 
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:BoundField DataField="SeatDiagram" HeaderText="SeatDiagram" SortExpression="SeatDiagram" ControlStyle-CssClass="btnstandard" ControlStyle-Width="300px" ControlStyle-Height="20px">
-                                                <ControlStyle CssClass="btnstandard" />
-                                            </asp:BoundField>
-                                            <asp:TemplateField HeaderText="Description" SortExpression="Description">
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Description") %>' TextMode="MultiLine" Height="100px" Width="300px"></asp:TextBox>
-                                                </EditItemTemplate>
-                                                <InsertItemTemplate>
-                                                    <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Description") %>'></asp:TextBox>
-                                                </InsertItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("Description") %>'></asp:Label>
-                                                </ItemTemplate>
-                                                <ControlStyle CssClass="btnstandard" />
-                                            </asp:TemplateField>
-                                            <asp:TemplateField ShowHeader="False">
-                                                <EditItemTemplate>
-                                                    <asp:Button ID="Button1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="C_PTButt" BackColor="Green" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to update this venue?')" OnClick="Page_Load" />
-                                                    &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="C_PTButt" />
-                                                </EditItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="C_PTButt" BackColor="#33ccff" ForeColor="White" />
-                                                    &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="C_PTButt" BackColor="Red" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to permanently delete this venue?')" />
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                        </Fields>
-                                        <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
-                                        <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
-                                        <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
-                                        <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
-                                    </asp:DetailsView>
-                                </div>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="SeatDiagram" SortExpression="SeatDiagram">
+                                                    <EditItemTemplate>
+                                                        <%--                                                    <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("SeatDiagram") %>'></asp:TextBox>--%>
+                                                        <asp:Label ID="Label7" runat="server" Text='<%# Bind("SeatDiagram") %>'></asp:Label>
 
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
+                                                    </EditItemTemplate>
+                                                    <InsertItemTemplate>
+                                                        <asp:TextBox ID="TextBox7" runat="server" Text='<%# Bind("SeatDiagram") %>'></asp:TextBox>
+                                                    </InsertItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label7" runat="server" Text='<%# Bind("SeatDiagram") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ControlStyle CssClass="btnstandard" Height="20px" Width="300px" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Description" SortExpression="Description">
+                                                    <EditItemTemplate>
+                                                        <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Description") %>' TextMode="MultiLine" Height="100px" Width="300px"></asp:TextBox>
+                                                    </EditItemTemplate>
+                                                    <InsertItemTemplate>
+                                                        <asp:TextBox ID="TextBox4" runat="server" Text='<%# Bind("Description") %>'></asp:TextBox>
+                                                    </InsertItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="Label4" runat="server" Text='<%# Bind("Description") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ControlStyle CssClass="btnstandard" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField ShowHeader="False">
+                                                    <EditItemTemplate>
+                                                        <asp:Button ID="Button1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="C_PTButt" BackColor="Green" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to update this venue?')" OnClick="Page_Load" />
+                                                        &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="C_PTButt" />
+                                                    </EditItemTemplate>
+                                                    <ItemTemplate>
+                                                        <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="C_PTButt" BackColor="#33ccff" ForeColor="White" />
+                                                        &nbsp;<asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="C_PTButt" BackColor="Red" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to permanently delete this venue?')" />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Fields>
+                                            <FooterStyle BackColor="#B5C7DE" ForeColor="#4A3C8C" />
+                                            <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#F7F7F7" />
+                                            <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
+                                            <RowStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" />
+                                        </asp:DetailsView>
+                                    </div>
+
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
 
                         </div>
                     </div>

@@ -21,6 +21,7 @@ namespace Online_Ticket_System.CSharpCode
         public double Minprice { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
+        public string SeatingChart { get; set; }
 
         public Event() { }
         public Event(string name, string date, string time, string venue, string status, string category, string description, string img)

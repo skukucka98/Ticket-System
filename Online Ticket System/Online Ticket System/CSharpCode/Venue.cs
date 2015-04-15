@@ -15,9 +15,9 @@ namespace Online_Ticket_System.CSharpCode
         public string State { get; set; }
         public string Zip { get; set; }
         public string Desc { get; set; }
+        public string SeatingChart { get; set; }
 
-
-        public Venue(int id, string name, string add1, string add2, string city, string state, string zip, string desc)
+        public Venue(int id, string name, string add1, string add2, string city, string state, string zip, string desc, string chart)
         {
             Id = id;
             Name = name;
@@ -27,9 +27,10 @@ namespace Online_Ticket_System.CSharpCode
             State = state;
             Zip = zip;
             Desc = desc;
+            SeatingChart = chart;
         }
 
-        public Venue(string name, string add1, string add2, string city, string state, string zip, string description)
+        public Venue(string name, string add1, string add2, string city, string state, string zip, string description, string Chart)
         {
 
             Name = name;
@@ -39,6 +40,7 @@ namespace Online_Ticket_System.CSharpCode
             State = state;
             Zip = zip;
             Desc = description;
+            SeatingChart = Chart;
         }
     }
 }
