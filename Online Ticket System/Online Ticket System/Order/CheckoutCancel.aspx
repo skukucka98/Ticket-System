@@ -5,15 +5,15 @@
     <table>
         <tr>
             <td id="LeftContent"></td>
-            <td id="CenterContent">
+            <td id="CenterContent" style="background-color:black; color:white">
                 <div>
                     <table style="margin-left: auto; margin-right: auto; width:700px; text-align:center">
                         <tr>
-                            <th style="background-color: black; color: white">Order has been cancelled</th>
+                            <th id="ManTitle" style="background-color:black">Your order has been cancelled</th>
                         </tr>
                         <tr>
                             <td>
-                                <asp:Button ID="Button1" runat="server" Text="Return to Home page" CssClass="btnstandard" Height="40px" Width="150px" Font-Bold="true" ForeColor="White" BackColor="Red" OnClick="Button1_Click" />
+                                <asp:Button ID="Button1" runat="server" Text="Return to Home page" CssClass="btnstandard" Height="40px" Width="150px" Font-Bold="true" ForeColor="White" BackColor="Blue" OnClick="Button1_Click" />
                             </td>
                         </tr>
                     </table>

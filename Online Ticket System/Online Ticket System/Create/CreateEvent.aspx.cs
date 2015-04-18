@@ -135,7 +135,7 @@ namespace Online_Ticket_System.Create
                         //lbSeatOutput.Text = "This Section already exits.";
                         //lbSeatOutput.ForeColor = Color.Red;
                         EventGrid.Visible = true;
-                        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('This Section already exits.')", true);
+                        this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Can not have multiple price for the same section.')", true);
                         EventGrid.Visible = true;
                         lbPrice.Text = "";
                     }

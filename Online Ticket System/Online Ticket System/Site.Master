@@ -71,7 +71,7 @@
             </div>--%>
             <div style="text-align: right">
                 <asp:Label ID="lbSignIn" runat="server"></asp:Label>
-                <asp:LinkButton ID="lbSignOut" runat="server" OnClick="lbSignOut_Click">(Log In/Register)</asp:LinkButton>
+                <asp:LinkButton ID="lbSignOut" runat="server" OnClick="lbSignOut_Click" ForeColor="#33ccff">(Log In/Register)</asp:LinkButton>
                 <%--<asp:LinkButton ID="lbRegister" runat="server" OnClick="lbRegister_Click">(Register)</asp:LinkButton>--%>
             </div>
             <div id="navigation">

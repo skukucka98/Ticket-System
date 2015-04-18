@@ -13,5 +13,10 @@ namespace Online_Ticket_System.Order
         {
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Default.aspx");
+        }
     }
 }

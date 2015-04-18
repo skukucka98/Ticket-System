@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -13,15 +15,17 @@ namespace Online_Ticket_System.Order
     public partial class CheckoutReview : System.Web.UI.Page
     {
         private List<int> removelist;
+        private double totalcost;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 //DisplayOrderDetail();
                 DisplayTicketDetail();
+                totalcost = 0;
             }
         }
-        private double totalcost = 0;
+        
         private void DisplayTicketDetail()
         {
             if (Session["Cart"] == null)
@@ -35,7 +39,7 @@ namespace Online_Ticket_System.Order
                 Cart cart = (Cart)Session["Cart"];
                 ids = cart.getList();
                 if (Session["removelist"] == null)
-                {                    
+                {
                     foreach (int i in ids)
                     {
                         Connection.ChangeSeatStatus(i, "Pending");
@@ -53,68 +57,68 @@ namespace Online_Ticket_System.Order
                         }
                     }
                 }
-                    //Create DataSource for Gridview
-                    DataTable Tickettable = new DataTable();
-                    DataColumn Col = new DataColumn();
-                    Col.DataType = System.Type.GetType("System.Int32");
-                    Col.ColumnName = "Ticket#";
-                    Tickettable.Columns.Add(Col);
+                //Create DataSource for Gridview
+                DataTable Tickettable = new DataTable();
+                DataColumn Col = new DataColumn();
+                Col.DataType = System.Type.GetType("System.Int32");
+                Col.ColumnName = "Ticket#";
+                Tickettable.Columns.Add(Col);
 
-                    Col = new DataColumn();
-                    Col.DataType = System.Type.GetType("System.String");
-                    Col.ColumnName = ("EventName");
-                    Tickettable.Columns.Add(Col);
+                Col = new DataColumn();
+                Col.DataType = System.Type.GetType("System.String");
+                Col.ColumnName = ("EventName");
+                Tickettable.Columns.Add(Col);
 
-                    // Create a 3rd column in gridview 
-                    Col = new DataColumn();
-                    Col.DataType = System.Type.GetType("System.DateTime");
-                    Col.ColumnName = ("OrderDate");
-                    Tickettable.Columns.Add(Col);
+                // Create a 3rd column in gridview 
+                Col = new DataColumn();
+                Col.DataType = System.Type.GetType("System.DateTime");
+                Col.ColumnName = ("OrderDate");
+                Tickettable.Columns.Add(Col);
 
-                    Col = new DataColumn();
-                    Col.DataType = System.Type.GetType("System.Int32");
-                    Col.ColumnName = ("SeatSection");
-                    Tickettable.Columns.Add(Col);
+                Col = new DataColumn();
+                Col.DataType = System.Type.GetType("System.Int32");
+                Col.ColumnName = ("SeatSection");
+                Tickettable.Columns.Add(Col);
 
-                    Col = new DataColumn();
-                    Col.DataType = System.Type.GetType("System.Int32");
-                    Col.ColumnName = ("SeatNumber");
-                    Tickettable.Columns.Add(Col);
+                Col = new DataColumn();
+                Col.DataType = System.Type.GetType("System.Int32");
+                Col.ColumnName = ("SeatNumber");
+                Tickettable.Columns.Add(Col);
 
-                    Col = new DataColumn();
-                    Col.DataType = System.Type.GetType("System.Double");
-                    Col.ColumnName = ("Price");
-                    Tickettable.Columns.Add(Col);
+                Col = new DataColumn();
+                Col.DataType = System.Type.GetType("System.Double");
+                Col.ColumnName = ("Price");
+                Tickettable.Columns.Add(Col);
 
-                    Col = new DataColumn();
-                    Col.DataType = System.Type.GetType("System.Int32");
-                    Col.ColumnName = ("SeatID");
-                    Tickettable.Columns.Add(Col);
-                    //
-                    DataRow row;
-                    for (int i = 0; i < ci.Count; i++)
-                    {
-                        row = Tickettable.NewRow();
-                        row["Ticket#"] = i + 1;
-                        row["EventName"] = ci[i].EventName;
-                        row["OrderDate"] = DateTime.Now.ToShortDateString();
-                        row["SeatSection"] = ci[i].catenum;
-                        row["SeatNumber"] = ci[i].seatnum;
-                        row["Price"] = (double)ci[i].Price;
-                        row["SeatID"] = ci[i].seatid;
-                        Tickettable.Rows.Add(row);
-                    }
+                Col = new DataColumn();
+                Col.DataType = System.Type.GetType("System.Int32");
+                Col.ColumnName = ("SeatID");
+                Tickettable.Columns.Add(Col);
+                //
+                DataRow row;
+                for (int i = 0; i < ci.Count; i++)
+                {
+                    row = Tickettable.NewRow();
+                    row["Ticket#"] = i + 1;
+                    row["EventName"] = ci[i].EventName;
+                    row["OrderDate"] = DateTime.Now.ToShortDateString();
+                    row["SeatSection"] = ci[i].catenum;
+                    row["SeatNumber"] = ci[i].seatnum;
+                    row["Price"] = (double)ci[i].Price;
+                    row["SeatID"] = ci[i].seatid;
+                    Tickettable.Rows.Add(row);
+                }
 
-                    TicketList.DataSource = Tickettable;
-                    TicketList.DataBind();
-                    double amt = (double)Tickettable.Compute("Sum(Price)", "");
-                    Subtotal.Text = amt.ToString("#,##0.00");
-                    Taxtotal.Text = (amt * 10 / 100).ToString("#,##0.00");
-                    totalcost = amt + (amt * 10 / 100);
-                    Total.Text = "$" + totalcost.ToString("#,##0.00");
-                    Session["ticket"] = Tickettable;
-                   
-                
+                TicketList.DataSource = Tickettable;
+                TicketList.DataBind();
+                double amt = (double)Tickettable.Compute("Sum(Price)", "");
+                Subtotal.Text = amt.ToString("#,##0.00");
+                Taxtotal.Text = (amt * 7 / 100).ToString("#,##0.00");
+                totalcost = amt + (amt * 7 / 100);
+                Total.Text = "$" + totalcost.ToString("#,##0.00");
+                Session["ticket"] = Tickettable;
+
+
             }
         }
 
@@ -179,8 +183,8 @@ namespace Online_Ticket_System.Order
                 {
                     double amt = (double)dt.Compute("Sum(Price)", "");
                     Subtotal.Text = amt.ToString("#,##0.00");
-                    Taxtotal.Text = (amt * 10 / 100).ToString("#,##0.00");
-                    totalcost = amt + (amt * 10 / 100);
+                    Taxtotal.Text = (amt * 7 / 100).ToString("#,##0.00");
+                    totalcost = amt + (amt * 7 / 100);
                     Total.Text = "$" + totalcost.ToString("#,##0.00");
                 }
                 else
@@ -190,6 +194,67 @@ namespace Online_Ticket_System.Order
                     Session["Cart"] = null;
                     Response.Redirect("~/Order/CheckoutCancel.aspx");
                 }
+            }
+        }
+
+        protected void MakePayment_Click(object sender, EventArgs e)
+        {
+            if (Session["Cart"] == null)
+            {
+                Response.Redirect("./CheckoutError.aspx");
+            }
+            else
+            {
+                List<CartItem> ci = new List<CartItem>();
+                List<int> ids = new List<int>();
+                Cart cart = (Cart)Session["Cart"];
+                ids = cart.getList();
+                string userid = cart.Cusname;
+                string ConfimationCode = Membership.GeneratePassword(15, 0);
+                ConfimationCode = Regex.Replace(ConfimationCode, @"[^a-zA-Z0-9]", m => "A");
+                DataTable dt = (DataTable)Session["ticket"];
+                totalcost = (double)dt.Compute("Sum(Price)", "");
+                if (Session["removelist"] == null)
+                {
+                    removelist = new List<int>();
+                }
+                else
+                {
+                    removelist = (List<int>)Session["removelist"];
+                }
+
+                int orderid = Connection.CreateOrder(Int32.Parse(userid), DateTime.Now, totalcost, ConfimationCode);
+
+                if (removelist.Count == 0)
+                {
+                    foreach (int i in ids)
+                    {
+                        CartItem itm = Connection.GetCartinfo(i);
+                        Connection.ChangeSeatStatus(i, "sold");
+                        Connection.CreateTicket(orderid, itm.seatid, (double)itm.Price);
+                    }
+                }
+                else
+                {
+                    foreach (int i in ids)
+                    {
+                        if (!removelist.Contains(i))
+                        {
+                            CartItem itm = Connection.GetCartinfo(i);
+                            Connection.ChangeSeatStatus(i, "sold");
+                            Connection.CreateTicket(orderid, itm.seatid, (double)itm.Price);
+                        }
+                        else
+                        {
+                            Connection.ChangeSeatStatus(i, "Available");
+                        }
+                    }
+                }
+                Session["orderid"] = orderid;
+                Session["removelist"] = null;
+                Session["ticket"] = null;
+                Session["Cart"] = null;
+                Response.Redirect("~/Order/CheckoutConfirmation.aspx");
             }
         }
 

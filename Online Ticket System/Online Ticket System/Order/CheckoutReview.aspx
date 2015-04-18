@@ -229,7 +229,7 @@
                     </div>
                 </div>
                 <div style="text-align: right; margin-right: 50px; margin-bottom:20px">
-                    <asp:Button ID="MakePayment" runat="server" Text="Checkout" CssClass="btnstandard" ForeColor="White" BackColor="Green" Width="100px" Height="40px" />
+                    <asp:Button ID="MakePayment" runat="server" Text="Checkout" CssClass="btnstandard" ForeColor="White" BackColor="Green" Width="100px" Height="40px" OnClick="MakePayment_Click" />
                 </div>
             </td>
             <td id="RightContent"></td>

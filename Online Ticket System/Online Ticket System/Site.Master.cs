@@ -29,9 +29,9 @@ namespace Online_Ticket_System
                 if (cookie["id"] != null)
                 {
                     if (cookie["FirstName"] == null)
-                        lbSignIn.Text = "Welcome, <a href='../Account/ManageAccount.aspx'>" + cookie["Username"] + "<a>";
+                        lbSignIn.Text = "Welcome, <a href='../Account/ManageAccount.aspx' style='font-weight:bolder'; text-decoration:underline'>" + cookie["Username"] + "<a>";
                     else
-                        lbSignIn.Text = "Welcome, <a href='../Account/ManageAccount.aspx'>" + (cookie["FirstName"] + " " + cookie["LastName"]) + "<a>";
+                        lbSignIn.Text = "Welcome, <a href='../Account/ManageAccount.aspx' style='font-weight:bolder; text-decoration:underline'>" + (cookie["FirstName"] + " " + cookie["LastName"]) + "<a>";
                     lbSignIn.Visible = true;
                     lbSignOut.Text = "(LogOut)";
                     //lbRegister.Visible = false;

@@ -1,5 +1,6 @@
 ﻿using Online_Ticket_System.Create;
 using Online_Ticket_System.Display.Model;
+using Online_Ticket_System.Order.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -1076,5 +1077,76 @@ namespace Online_Ticket_System.CSharpCode
             }
         }
 
+        public static int CreateOrder(int cusid, DateTime orderdate, double total, string confimationcode)
+        {
+            string query = string.Format("EXEC [CreateOrder] {0}, '{1}', {2}, '{3}'", cusid, orderdate, total, confimationcode);
+            int id = 0;
+            try
+            {
+                conn.Open();
+                cmd.CommandText = query;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    id = reader.GetInt32(0);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return id;
+        }
+
+        public static void CreateTicket(int orderid, int seatid, double cost)
+        {
+            string query = string.Format("EXEC [CreateTicketItm] {0}, {1}, {2}", orderid, seatid, cost);
+            try
+            {
+                conn.Open();
+                cmd.CommandText = query;
+                SqlDataReader reader = cmd.ExecuteReader();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public static PurchaseOrder GetOrderConfirmation(int id)
+        {
+            string query = string.Format("Select orderid, orderdate, [ConfirmationCode], totalcost from tblorder where orderid = {0}", id);
+            PurchaseOrder po = new PurchaseOrder();
+            try
+            {
+                conn.Open();
+                cmd.CommandText = query;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    po.orderid = reader.GetInt32(0);
+                    po.purchasedate = reader.GetDateTime(1);
+                    po.confirmationCode = reader.GetString(2);
+                    po.ordertotal = reader.GetDecimal(3);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return po;
+        }
     }
 }

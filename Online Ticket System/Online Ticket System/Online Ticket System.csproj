@@ -193,6 +193,7 @@
     <Content Include="Images\shoppingcart.png" />
     <Content Include="Images\sidebanner.png" />
     <Content Include="Order\CheckoutCancel.aspx" />
+    <Content Include="Order\CheckoutConfirmation.aspx" />
     <Content Include="Order\CheckoutError.aspx" />
     <Content Include="Order\CheckoutReview.aspx" />
     <Content Include="Scripts\jquery-1.11.2.js" />
@@ -370,6 +371,13 @@
     <Compile Include="Order\CheckoutCancel.aspx.designer.cs">
       <DependentUpon>CheckoutCancel.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Order\CheckoutConfirmation.aspx.cs">
+      <DependentUpon>CheckoutConfirmation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Order\CheckoutConfirmation.aspx.designer.cs">
+      <DependentUpon>CheckoutConfirmation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Order\CheckoutError.aspx.cs">
       <DependentUpon>CheckoutError.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -384,6 +392,7 @@
     <Compile Include="Order\CheckoutReview.aspx.designer.cs">
       <DependentUpon>CheckoutReview.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Order\Model\PurchaseOrder.cs" />
     <Compile Include="SignIn\ForgotPass.aspx.cs">
       <DependentUpon>ForgotPass.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -425,7 +434,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Checkout\" />
     <Folder Include="Images\Seating Map\" />
-    <Folder Include="Order\Model\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
