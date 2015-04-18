@@ -25,19 +25,18 @@ namespace Online_Ticket_System.Create
             }
         }
 
-        //protected void Page_Prerender(object sender, EventArgs e)
-        //{
-        //    if (GridView1.SelectedRow == null)
-        //    {
-        //        Vdetail.Visible = false;
-        //    }
-        //    else
-        //    {
-        //        Vdetail.Visible = true;
-        //    }
-
-
-        //}
+        private Boolean isImage(string image)
+        {
+            if (Path.GetExtension(image).ToLower() != ".jpg"
+           && Path.GetExtension(image).ToLower() != ".png"
+           && Path.GetExtension(image).ToLower() != ".gif"
+           && Path.GetExtension(image).ToLower() != ".jpeg")
+            {
+                return false;
+            }
+            else
+                return true;
+        }
 
         protected void AddSeat_Click(object sender, EventArgs e)
         {
@@ -135,6 +134,7 @@ namespace Online_Ticket_System.Create
         protected void venueSave_Click(object sender, EventArgs e)
         {
             lbSeatOutput.Text = "";
+
             if (Session["Mytable"] == null)
             {
                 this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('The Venue do not contain any section. Please add section and try it again.')", true);
@@ -143,6 +143,19 @@ namespace Online_Ticket_System.Create
             {
                 mytable = (DataTable)Session["Mytable"];
                 int n;
+                string filename;
+                try
+                {
+                    filename = Path.GetFileName(FileUpload1.FileName);
+                    FileUpload1.SaveAs(Server.MapPath("~/Images/Seating Map/") + filename);
+                }
+                catch (Exception)
+                {
+                    venueOutput.Text = "Upload Failed!";
+                    venueOutput.ForeColor = Color.Red;
+                    venueOutput.Visible = true;
+                    return;
+                }
 
                 if (!Regex.IsMatch(txtCity.Text, @"^[a-zA-Z ]+$"))
                 {
@@ -162,6 +175,12 @@ namespace Online_Ticket_System.Create
                 {
                     this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('The Venue do not contain any section. Please Add more section and try it again.')", true);
                 }
+                else if (!isImage(filename))
+                {
+                    venueOutput.Text = "Invalid Image";
+                    venueOutput.ForeColor = Color.Red;
+                    venueOutput.Visible = true;
+                }
                 else
                 {
                     try
@@ -173,18 +192,7 @@ namespace Online_Ticket_System.Create
                         string state = txtState.SelectedValue;
                         string zipcode = txtZip.Text.Replace(" ", string.Empty);
                         string description = txtvenueDescription.Text;
-                        string filename;
-                        try
-                        {
-                            //  string sstatus = "Available";
-                            filename = Path.GetFileName(FileUpload1.FileName);
-                            FileUpload1.SaveAs(Server.MapPath("~/Images/Seating Map/") + filename);
-                            //lbOutPut.Text = "Image" + filename + " successfully uploaded!";
-                        }
-                        catch (Exception)
-                        {
-                            filename = "test.jpg";
-                        }
+                        
 
                         Venue venue = new Venue(name, address1, address2, city, state, zipcode, description, "../Images/Seating Map/" + filename);
                         int id = Connection.AddVenue(venue);

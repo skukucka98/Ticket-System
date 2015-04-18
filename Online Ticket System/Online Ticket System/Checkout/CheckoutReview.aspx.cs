@@ -27,7 +27,7 @@ namespace Online_Ticket_System.Checkout
                 {
                     Session["payerId"] = PayerID;
 
-                    var myOrder = new Order();
+                    var myOrder;// = new Order();
                     myOrder.OrderDate = Convert.ToDateTime(decoder["TIMESTAMP"].ToString());
                     myOrder.Username = User.Identity.Name;
                     myOrder.FirstName = decoder["FIRSTNAME"].ToString();

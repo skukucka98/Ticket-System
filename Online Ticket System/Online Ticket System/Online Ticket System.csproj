@@ -136,11 +136,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\ManageAccount.aspx" />
-    <Content Include="Checkout\CheckoutCancel.aspx" />
-    <Content Include="Checkout\CheckoutComplete.aspx" />
-    <Content Include="Checkout\CheckoutError.aspx" />
-    <Content Include="Checkout\CheckoutReview.aspx" />
-    <Content Include="Checkout\CheckoutStart.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -197,6 +192,9 @@
     <Content Include="Images\seat diagram.jpg" />
     <Content Include="Images\shoppingcart.png" />
     <Content Include="Images\sidebanner.png" />
+    <Content Include="Order\CheckoutCancel.aspx" />
+    <Content Include="Order\CheckoutError.aspx" />
+    <Content Include="Order\CheckoutReview.aspx" />
     <Content Include="Scripts\jquery-1.11.2.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
@@ -267,41 +265,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Checkout\CheckoutCancel.aspx.cs">
-      <DependentUpon>CheckoutCancel.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Checkout\CheckoutCancel.aspx.designer.cs">
-      <DependentUpon>CheckoutCancel.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Checkout\CheckoutComplete.aspx.cs">
-      <DependentUpon>CheckoutComplete.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Checkout\CheckoutComplete.aspx.designer.cs">
-      <DependentUpon>CheckoutComplete.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Checkout\CheckoutError.aspx.cs">
-      <DependentUpon>CheckoutError.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Checkout\CheckoutError.aspx.designer.cs">
-      <DependentUpon>CheckoutError.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Checkout\CheckoutReview.aspx.cs">
-      <DependentUpon>CheckoutReview.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Checkout\CheckoutReview.aspx.designer.cs">
-      <DependentUpon>CheckoutReview.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Checkout\CheckoutStart.aspx.cs">
-      <DependentUpon>CheckoutStart.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Checkout\CheckoutStart.aspx.designer.cs">
-      <DependentUpon>CheckoutStart.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Create\AdministratorPage.aspx.cs">
       <DependentUpon>AdministratorPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -400,6 +363,27 @@
     <Compile Include="Models\ProductDatabaseInitializer.cs" />
     <Compile Include="Models\ShoppigCartActions.cs" />
     <Compile Include="Models\ShoppingCartAction.cs" />
+    <Compile Include="Order\CheckoutCancel.aspx.cs">
+      <DependentUpon>CheckoutCancel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Order\CheckoutCancel.aspx.designer.cs">
+      <DependentUpon>CheckoutCancel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Order\CheckoutError.aspx.cs">
+      <DependentUpon>CheckoutError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Order\CheckoutError.aspx.designer.cs">
+      <DependentUpon>CheckoutError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Order\CheckoutReview.aspx.cs">
+      <DependentUpon>CheckoutReview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Order\CheckoutReview.aspx.designer.cs">
+      <DependentUpon>CheckoutReview.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SignIn\ForgotPass.aspx.cs">
       <DependentUpon>ForgotPass.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -439,7 +423,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Checkout\" />
     <Folder Include="Images\Seating Map\" />
+    <Folder Include="Order\Model\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

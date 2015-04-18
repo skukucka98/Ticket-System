@@ -65,7 +65,7 @@
                                 <td style="width: 200px; text-align: right">Venue:</td>
                                 <td class="auto-style2" style="text-align: left">
                                     <div>
-                                        <asp:DropDownList ID="VenueIDDd" runat="server" DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="VenueID" ValidationGroup="AddEvent" AutoPostBack="True" CssClass="CrDrDown" Width="305px" Height="35px">                                        </asp:DropDownList>
+                                        <asp:DropDownList ID="VenueIDDd" runat="server" DataSourceID="SqlDataSource2" DataTextField="Name" DataValueField="VenueID" ValidationGroup="AddEvent" AutoPostBack="True" CssClass="CrDrDown" Width="305px" Height="35px"></asp:DropDownList>
                                         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" SelectCommand="SELECT [VenueID], [Name] FROM [tblVenue]"></asp:SqlDataSource>
                                     </div>
                                 </td>
@@ -95,7 +95,7 @@
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="txtPrice" ValidationGroup="AddPrice"></asp:RequiredFieldValidator>
                                             </td>
                                             <td>
-                                                <asp:Button ID="price" runat="server" Text="Add" OnClick="price_Click" CssClass="CrEButt" ValidationGroup="AddPrice" Height="35px" Width="80px"/>
+                                                <asp:Button ID="price" runat="server" Text="Add" OnClick="price_Click" CssClass="CrEButt" ValidationGroup="AddPrice" Height="35px" Width="80px" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -114,7 +114,7 @@
                                                         <asp:BoundField DataField="Price" HeaderText="Price" />
                                                         <asp:TemplateField ShowHeader="False">
                                                             <ItemTemplate>
-                                                                <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="btnstandard" ForeColor="white" BackColor="Red" Height="30px"/>
+                                                                <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="btnstandard" ForeColor="white" BackColor="Red" Height="30px" />
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                     </Columns>
@@ -178,7 +178,7 @@ s                            <tr>
                             <tr>
                                 <td></td>
                                 <td style="text-align: left">
-                                    <asp:Button ID="buttonSave" runat="server" Text="Save" OnClick="buttonSave_Click" ValidationGroup="AddEvent" CssClass="CrEButt" Height="40px"/>
+                                    <asp:Button ID="buttonSave" runat="server" Text="Save" OnClick="buttonSave_Click" ValidationGroup="AddEvent" CssClass="CrEButt" Height="40px" />
                                 </td>
                             </tr>
                             <tr>
@@ -379,12 +379,12 @@ s                            <tr>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ShowHeader="False">
                                                                 <EditItemTemplate>
-                                                                    <asp:Button ID="Button1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="C_PTButt" BackColor="Green" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to update this venue?')" />
+                                                                    <asp:Button ID="Button1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" CssClass="C_PTButt" BackColor="Green" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to update this event?')" />
                                                                     <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" CssClass="C_PTButt" />
                                                                 </EditItemTemplate>
                                                                 <ItemTemplate>
                                                                     <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" CssClass="C_PTButt" BackColor="#33ccff" ForeColor="White" />
-                                                                    <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" CssClass="C_PTButt" BackColor="Red" ForeColor="White" OnClientClick="return confirm('Are you sure that you want to permanently delete this venue?')" />
+                                                                    <asp:Button ID="Button2" runat="server" CausesValidation="False" CommandName="Delete" Text="Deactivate" CssClass="C_PTButt" BackColor="Red" ForeColor="White" Width="100px" OnClientClick="return confirm('Are you sure that you want to deactivate this event?')" />
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                         </Fields>
@@ -393,7 +393,9 @@ s                            <tr>
                                                         <PagerStyle BackColor="#E7E7FF" ForeColor="#4A3C8C" HorizontalAlign="Right" />
                                                         <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
                                                     </asp:DetailsView>
-                                                    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" DeleteCommand="DELETE FROM dbo.tblEvent WHERE (EventID = @EventID)" SelectCommand="SELECT EventID, e.Name, EventDate, EventTime, v.name as Venue, c.name as SubCategory, e.Description, e.status , e.[picture]
+                                                    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" DeleteCommand="UPDATE dbo.tblEvent SET isActive = 0
+WHERE (EventID = @EventID)"
+                                                        SelectCommand="SELECT EventID, e.Name, EventDate, EventTime, v.name as Venue, c.name as SubCategory, e.Description, e.status , e.[picture]
 FROM dbo.tblEvent e
                                                                                                 INNER JOIN dbo.tblVenue v on v.Venueid = e.Venueid 
                                                                                                 INNER JOIN dbo.tblEventCategory c on c.EventCategoryid = e.Categoryid
@@ -440,7 +442,9 @@ FROM dbo.tblEvent e
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>"
         DeleteCommand="DELETE FROM [tblEvent] WHERE [EventID] = @EventID"
         InsertCommand="INSERT INTO [tblEvent] ([Name], [EventDate], [EventTime], [VenueID], [Status], [CategoryID], [Description], [picture]) VALUES (@Name, @EventDate, @EventTime, @VenueID, @Status, @CategoryID, @Description, @picture)"
-        SelectCommand="SELECT dbo.tblEventCategory.Name AS Category, tblEventCategory_1.Name AS SubCategory, dbo.tblEvent.Name, dbo.tblEvent.EventDate, dbo.tblEvent.EventTime, dbo.tblVenue.Name AS Venue, dbo.tblEvent.Status, dbo.tblEvent.EventID FROM dbo.tblEventCategory INNER JOIN dbo.tblVenue INNER JOIN dbo.tblEvent ON dbo.tblVenue.VenueID = dbo.tblEvent.VenueID INNER JOIN dbo.tblEventCategory AS tblEventCategory_1 ON dbo.tblEvent.CategoryID = tblEventCategory_1.EventCategoryID ON dbo.tblEventCategory.EventCategoryID = tblEventCategory_1.ParentCategoryID" UpdateCommand="UPDATE [tblEvent] SET [Name] = @Name, [EventDate] = @EventDate, [EventTime] = @EventTime, [VenueID] = @VenueID, [Status] = @Status, [CategoryID] = @CategoryID, [Description] = @Description, [picture] = @picture WHERE [EventID] = @EventID">
+        SelectCommand="SELECT dbo.tblEventCategory.Name AS Category, tblEventCategory_1.Name AS SubCategory, dbo.tblEvent.Name, dbo.tblEvent.EventDate, dbo.tblEvent.EventTime, dbo.tblVenue.Name AS Venue, dbo.tblEvent.Status, dbo.tblEvent.EventID FROM dbo.tblEventCategory INNER JOIN dbo.tblVenue INNER JOIN dbo.tblEvent ON dbo.tblVenue.VenueID = dbo.tblEvent.VenueID INNER JOIN dbo.tblEventCategory AS tblEventCategory_1 ON dbo.tblEvent.CategoryID = tblEventCategory_1.EventCategoryID ON dbo.tblEventCategory.EventCategoryID = tblEventCategory_1.ParentCategoryID
+WHERE dbo.tblEvent.isActive = 1"
+        UpdateCommand="UPDATE [tblEvent] SET [Name] = @Name, [EventDate] = @EventDate, [EventTime] = @EventTime, [VenueID] = @VenueID, [Status] = @Status, [CategoryID] = @CategoryID, [Description] = @Description, [picture] = @picture WHERE [EventID] = @EventID">
         <DeleteParameters>
             <asp:Parameter Name="EventID" Type="Int32" />
         </DeleteParameters>

@@ -1041,7 +1041,8 @@ namespace Online_Ticket_System.CSharpCode
                     ct.catenum = reader.GetInt32(3);
                     ct.seatnum = reader.GetInt32(4);
                     ct.Price = reader.GetDecimal(5);
-                    ct.VenueName = reader.GetString(6);                   
+                    ct.VenueName = reader.GetString(6);
+                    ct.seatid = reader.GetInt32(7);
                     //list.Add(ct);
                 }
             }
@@ -1055,6 +1056,24 @@ namespace Online_Ticket_System.CSharpCode
             }
 
             return ct;
+        }
+
+        public static void ChangeSeatStatus(int id, string status){
+            string query = string.Format("Update tblvenueseat set status = '{1}' from tblvenueseat where seatid = {0}", id,status);
+            cmd.CommandText = query;
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
     }

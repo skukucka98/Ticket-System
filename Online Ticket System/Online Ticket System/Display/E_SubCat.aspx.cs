@@ -25,7 +25,7 @@ namespace Online_Ticket_System.Display
 
         private void D_Binding()
         {
-            //System.Collections.Specialized.NameValueCollection searchValue = Request.Form;
+            System.Collections.Specialized.NameValueCollection searchValue = Request.Form;
             //if (searchValue["ctl00$SearchBox"] != null)
             //{
             //    //value.Text = searchValue["ctl00$SearchBox"];
@@ -45,10 +45,10 @@ namespace Online_Ticket_System.Display
             //    }
             if (Request.QueryString["SerVal"] != null)
             {
-                //value.Text = searchValue["ctl00$SearchBox"];
-                value.Text = "Category: ";
-                E_SubcatList.DataSource = Connection.GetSubCat();
-                DropdownBinding();
+                value.Text = searchValue["ctl00$SearchBox"];
+                //value.Text = "Category: ";
+                //E_SubcatList.DataSource = Connection.GetSubCat();
+                //DropdownBinding();
                 if (Connection.GetEbyServal(Request.QueryString["SerVal"]) > 0)
                 {
                     UpcomeE.DataSource = Connection.UpcomeBySerVal(Request.QueryString["SerVal"]);
@@ -68,9 +68,9 @@ namespace Online_Ticket_System.Display
                     if (Request.QueryString["Cat"] != "" && Request.QueryString["subcat"] == "")
                     {
                         string link = Request.Url.PathAndQuery;
-                        value.Text = "Choose Category: ";
-                        E_SubcatList.DataSource = Connection.GetSubCategoryBycat(Request.QueryString["Cat"].Replace('+', ' '));
-                        DropdownBinding();
+                        //value.Text = "Choose Category: ";
+                        //E_SubcatList.DataSource = Connection.GetSubCategoryBycat(Request.QueryString["Cat"].Replace('+', ' '));
+                        //DropdownBinding();
                         dt = Connection.UpcomeByCat(Request.QueryString["Cat"].Replace('+', ' '));
                         if (dt.Rows.Count > 0)
                         {
@@ -80,8 +80,8 @@ namespace Online_Ticket_System.Display
                         else
                         {
                             ESubCat_Mes.Text = "Sorry, There is currently no event in this category.<br/>There are some events you may interest:";
-                            E_SubcatList.DataSource = Connection.GetSubCat();
-                            DropdownBinding();
+                            //E_SubcatList.DataSource = Connection.GetSubCat();
+                            //DropdownBinding();
                             UpcomeE.DataSource = Connection.SuggestEvent();
                             UpcomeE.DataBind();
                         }
@@ -90,10 +90,10 @@ namespace Online_Ticket_System.Display
                     {
                         //HttpCookie link = Request.Cookies["URL"];
 
-                        value.Text = "Choose Category: ";
-                        E_SubcatList.DataSource = Connection.GetSubCategoryBycat(Request.QueryString["Cat"].Replace('+', ' '));
-                        DropdownBinding();
-                        E_SubcatList.SelectedValue = Request.QueryString["subcat"];
+                        //value.Text = "Choose Category: ";
+                        //E_SubcatList.DataSource = Connection.GetSubCategoryBycat(Request.QueryString["Cat"].Replace('+', ' '));
+                        //DropdownBinding();
+                        //E_SubcatList.SelectedValue = Request.QueryString["subcat"];
                         dt = Connection.UpcomeBySubCat(Request.QueryString["subcat"].Replace('+', ' '));
                         if (dt.Rows.Count > 0)
                         {
@@ -109,52 +109,49 @@ namespace Online_Ticket_System.Display
                     }
                     else
                     {
-                        value.Text = "Choose Category: ";
-                        E_SubcatList.DataSource = Connection.GetSubCat();
-                        DropdownBinding();
+                        //value.Text = "Choose Category: ";
+                        //E_SubcatList.DataSource = Connection.GetSubCat();
+                        //DropdownBinding();
                         UpcomeE.DataSource = Connection.SuggestEvent();
                         UpcomeE.DataBind();
                     }
                 }
                 else
                 {
-                    value.Text = "Choose Category: ";
-                    E_SubcatList.DataSource = Connection.GetSubCat();
-                    DropdownBinding();
+                    //value.Text = "Choose Category: ";
+                    //E_SubcatList.DataSource = Connection.GetSubCat();
+                    //DropdownBinding();
                     UpcomeE.DataSource = Connection.SuggestEvent();
                     UpcomeE.DataBind();
                 }
             }
         }
-        private void DropdownBinding()
-        {
-            E_SubcatList.DataBind();
-            E_SubcatList.DataTextField = "subcat";
-            E_SubcatList.DataValueField = "subcat";
-            E_SubcatList.DataBind();
-        }
-        //private void BindingSucCatList()
+        //private void DropdownBinding()
         //{
-
+        //    E_SubcatList.DataBind();
+        //    E_SubcatList.DataTextField = "subcat";
+        //    E_SubcatList.DataValueField = "subcat";
+        //    E_SubcatList.DataBind();
         //}
 
-        protected void E_SubcatList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            dt = Connection.UpcomeBySubCat(E_SubcatList.SelectedValue);
-            if (dt.Rows.Count > 0)
-            {
-                ESubCat_Mes.Text = "";
-                ESubCat_Mes.Visible = false;
-                UpcomeE.DataSource = dt;
-                UpcomeE.DataBind();
-            }
-            else
-            {
-                ESubCat_Mes.Visible = true;
-                ESubCat_Mes.Text = "Sorry, There is currently no event in this category.<br/>There are some events you may interest:";
-                UpcomeE.DataSource = Connection.Upcome_Event();
-                UpcomeE.DataBind();
-            }
-        }
+
+        //protected void E_SubcatList_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    dt = Connection.UpcomeBySubCat(E_SubcatList.SelectedValue);
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        ESubCat_Mes.Text = "";
+        //        ESubCat_Mes.Visible = false;
+        //        UpcomeE.DataSource = dt;
+        //        UpcomeE.DataBind();
+        //    }
+        //    else
+        //    {
+        //        ESubCat_Mes.Visible = true;
+        //        ESubCat_Mes.Text = "Sorry, There is currently no event in this category.<br/>There are some events you may interest:";
+        //        UpcomeE.DataSource = Connection.Upcome_Event();
+        //        UpcomeE.DataBind();
+        //    }
+        //}
     }
 }

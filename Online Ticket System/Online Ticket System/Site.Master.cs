@@ -22,6 +22,10 @@ namespace Online_Ticket_System
             HttpCookie cookie = Request.Cookies["UserInfo"];
             if (cookie != null)
             {
+                if (cookie["Usertype"] == "Administrator")
+                {
+                    Response.Redirect("~/Create/AdministratorPage.aspx");
+                }
                 if (cookie["id"] != null)
                 {
                     if (cookie["FirstName"] == null)
@@ -31,6 +35,14 @@ namespace Online_Ticket_System
                     lbSignIn.Visible = true;
                     lbSignOut.Text = "(LogOut)";
                     //lbRegister.Visible = false;
+                    if (Request.Url.AbsoluteUri.Contains("/CheckoutReview.aspx"))
+                    {
+                        lbSignOut.Visible = false;
+                    }
+                    else
+                    {
+                        lbSignOut.Visible = true;
+                    }
                 }
                 else
                 {

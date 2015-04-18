@@ -14,5 +14,6 @@ namespace Online_Ticket_System.CSharpCode
         public int catenum { get; set; }
         public int seatnum { get; set; }
         public decimal Price { get; set; }
+        public int seatid { get; set; }
     }
 }

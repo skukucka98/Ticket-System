@@ -16,10 +16,10 @@ namespace Online_Ticket_System.CSharpCode
             List<int> Seatid = new List<int>();
         }
 
-        public Cart(string name, List<int> id)
+        public Cart(string id, List<int> list)
         {
-            Cusname = name;
-            Seatid = id;
+            Cusname = id;
+            Seatid = list;
         }
 
         public List<int> getList()

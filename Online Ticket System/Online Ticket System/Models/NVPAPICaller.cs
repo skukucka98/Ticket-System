@@ -12,10 +12,6 @@ using Online_Ticket_System.CSharpCode;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 
 public class NVPAPICaller : System.Web.UI.Page
@@ -47,7 +43,7 @@ public class NVPAPICaller : System.Web.UI.Page
 
 
     //HttpWebRequest Timeout specified in milliseconds 
-    private const int Timeout = 15000;
+    private int Timeout = 15000;
     private static readonly string[] SECURED_NVPS = new string[] { ACCT, CVV2, SIGNATURE, PWD };
 
     public void SetCredentials(string Userid, string Pwd, string Signature)
@@ -65,8 +61,8 @@ public class NVPAPICaller : System.Web.UI.Page
             host = host_SB;
         }
 
-        string returnURL = "https://localhost:44300/Checkout/CheckoutReview.aspx";
-        string cancelURL = "https://localhost:44300/Checkout/CheckoutCancel.aspx";
+        string returnURL = "http://localhost:51341/Checkout/CheckoutReview.aspx";
+        string cancelURL = "http://localhost:51341/Checkout/CheckoutCancel.aspx";
 
         NVPCodec encoder = new NVPCodec();
         encoder["METHOD"] = "SetExpressCheckout";

@@ -167,16 +167,22 @@ namespace Online_Ticket_System.Create
             }
         }
 
-        //protected void AjaxFileUpload1_imageupload(object sender, AjaxFileUploadEventArgs e)
-        //{
-        //    string filename = e.FileName;
-        //    string strDestPath = Server.MapPath("~/Images/Events/");
-        //    AjaxFileUpload1.SaveAs(@strDestPath + filename);
-
-        //}
+        private Boolean isImage(string image)
+        {
+            if (Path.GetExtension(image).ToLower() != ".jpg"
+           && Path.GetExtension(image).ToLower() != ".png"
+           && Path.GetExtension(image).ToLower() != ".gif"
+           && Path.GetExtension(image).ToLower() != ".jpeg")
+            {
+                return false;
+            }
+            else
+                return true;
+        }
 
         protected void buttonSave_Click(object sender, EventArgs e)
         {
+            DateTime getdate = DateTime.Parse(txtEventDate.Text);
             if (Session["SeatLeveltable"] == null)
             {
                 this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Price is missing from the Seat Level. Please enter the price and try it again.')", true);
@@ -185,7 +191,21 @@ namespace Online_Ticket_System.Create
             {
                 tempTable = (DataTable)Session["SeatLeveltable"];
                 DateTime d;
-
+                string filename;
+                try
+                {
+                    //  string sstatus = "Available";
+                    filename = Path.GetFileName(FileUpload1.FileName);
+                    FileUpload1.SaveAs(Server.MapPath("~/Images/Events/") + filename);
+                    
+                }
+                catch (Exception)
+                {
+                    lbOutPut.Text = "Upload Failed!";
+                    lbOutPut.ForeColor = Color.Red;
+                    lbPrice.Text = "";
+                    return;
+                }
                 if (!(DateTime.TryParseExact(txtEventDate.Text, "MM/dd/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out d) || DateTime.TryParseExact(txtEventDate.Text, "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out d)))
                 {
                 }
@@ -196,7 +216,17 @@ namespace Online_Ticket_System.Create
                 {
                     this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Price is missing from the Seat Level. Please enter the price and try it again.')", true);
                 }
-                
+                else if (!isImage(filename))
+                {
+                    lbOutPut.Text = "Invalid Image";
+                    lbOutPut.ForeColor = Color.Red;
+                    lbPrice.Text = "";
+                }
+                    else if (getdate <= DateTime.Now){
+                        lbOutPut.Text = "Event date must be after the current date";
+                        lbOutPut.ForeColor = Color.Red;
+                        lbPrice.Text = "";
+                    }
                 else
                 {
 
@@ -209,19 +239,7 @@ namespace Online_Ticket_System.Create
                         //string status = txtEventStatus.Text;
                         string category = SelectEventCategory.SelectedValue;
                         string description = txtDescription.Text;
-                        string filename;
-                        //string images = "/httpdocs/Images/Events/" + ddlImage.SelectedValue;
-                        try
-                        {
-                            //  string sstatus = "Available";
-                            filename = Path.GetFileName(FileUpload1.FileName);
-                            FileUpload1.SaveAs(Server.MapPath("~/Images/Events/") + filename);
-                            //lbOutPut.Text = "Image" + filename + " successfully uploaded!";
-                        }
-                        catch (Exception)
-                        {
-                            filename = "test.jpg";
-                        }
+                        
                         Event ticket = new Event(name, date, time, venue, "Available", category, description, "../Images/Events/" + filename);
                         int eid = Connection.AddEvents(ticket);
                         tempTable = (DataTable)Session["SeatLeveltable"];

@@ -12,7 +12,9 @@ namespace Online_Ticket_System.Display
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["id"] == null)
+            int id = Int32.Parse(Request.QueryString["id"]);
+            List<Event> EventDetail = Connection.GetEventDetail(id).Cast<Event>().ToList();
+            if (Request.QueryString["id"] == null || EventDetail.Count==0)
             {
                 Response.Redirect("../Display/E_DetailErr.aspx");
             }
@@ -41,6 +43,7 @@ namespace Online_Ticket_System.Display
                 E_DetImage.ImageUrl = e.Picture;
                 E_DetImage.PostBackUrl = "../Display/E_Detail.aspx?id=" + e.ID;
                 ImageButton.ImageUrl = e.SeatingChart;
+                Image1.ImageUrl = e.SeatingChart;
             }
         }
 
@@ -56,10 +59,10 @@ namespace Online_Ticket_System.Display
             {
                 Buybtn.Attributes.Add("onclick", "return confirm('Please login before buying ticket!')");
             }
-            else
-            {
-                Buybtn.Attributes.Add("onclick", "return confirm('You have 5 minute to pay for your ticket. Do you want to process?')");
-            }
+            //else
+            //{
+            //    Buybtn.Attributes.Add("onclick", "return confirm('You have 5 minute to pay for your ticket. Do you want to process?')");
+            //}
             avlLabel.Visible = true;
         }
 
@@ -90,8 +93,9 @@ namespace Online_Ticket_System.Display
             {
                 Cart c = new Cart(cookie["id"], id);
                 Session.Add("Cart", c);
+                Response.Redirect("../Order/CheckoutReview.aspx");
             }
-            Response.Redirect("~/Checkout/CheckoutStart.aspx");
+            //Response.Redirect("~/Checkout/CheckoutStart.aspx");
         }
     }
 }

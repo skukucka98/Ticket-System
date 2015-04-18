@@ -13,9 +13,9 @@
                         <asp:Label ID="ESubCat_Mes" runat="server" ForeColor="Red"></asp:Label>
                     </div>
                     <div style="text-align: left; font-size: x-large">
-                        <asp:Label ID="value" runat="server" Text="jkhj"></asp:Label>
-                        <asp:DropDownList ID="E_SubcatList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="E_SubcatList_SelectedIndexChanged" CssClass="dropdownList">
-                        </asp:DropDownList>
+                        <asp:Label ID="value" runat="server"></asp:Label>
+                       <%-- <asp:DropDownList ID="E_SubcatList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="E_SubcatList_SelectedIndexChanged" CssClass="dropdownList">
+                        </asp:DropDownList>--%>
                     </div>
                     <div style="height: 500px; overflow: auto">
                         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
