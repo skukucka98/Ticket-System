@@ -35,10 +35,10 @@
                                 <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="PaymentTypeID" DataSourceID="SqlDataSource1" ForeColor="#333333" GridLines="None">
                                     <AlternatingRowStyle BackColor="White" />
                                     <Columns>
-                                        <asp:BoundField DataField="PaymentTypeID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="PaymentTypeID">
+                                        <asp:BoundField DataField="PaymentTypeID" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="PaymentTypeID" HeaderStyle-HorizontalAlign="Center">
                                             <ItemStyle HorizontalAlign="Center" Width="100px" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Name" HeaderText="Payment Type" SortExpression="Name">
+                                        <asp:BoundField DataField="Name" HeaderText="Payment Type" SortExpression="Name" HeaderStyle-HorizontalAlign="Center">
                                             <ItemStyle HorizontalAlign="Center" Width="600px" />
                                         </asp:BoundField>
                                         <asp:TemplateField HeaderText="Manage" ShowHeader="False">

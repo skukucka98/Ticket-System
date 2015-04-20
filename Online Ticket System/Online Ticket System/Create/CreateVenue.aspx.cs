@@ -147,11 +147,11 @@ namespace Online_Ticket_System.Create
                 try
                 {
                     filename = Path.GetFileName(FileUpload1.FileName);
-                    FileUpload1.SaveAs(Server.MapPath("~/Images/Seating Map/") + filename);
+                    FileUpload1.SaveAs(Server.MapPath("../Images/Seating Map/") + filename);
                 }
-                catch (Exception)
+                catch (Exception exc)
                 {
-                    venueOutput.Text = "Upload Failed!";
+                    venueOutput.Text = Server.MapPath("../Images/Seating Map/") + exc.ToString();
                     venueOutput.ForeColor = Color.Red;
                     venueOutput.Visible = true;
                     return;
