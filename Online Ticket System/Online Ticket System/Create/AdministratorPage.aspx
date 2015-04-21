@@ -13,9 +13,9 @@
                         <div>                            
                                 <ul>
                                     <li><a href="CreateE_Category.aspx">Create Category</a></li>
-                                    <li><a href="CreateVenue.aspx">Create Venue</a></li>
-                                    <li><a href="CreateP_Type.aspx">Create Payment Type</a></li>
                                     <li><a href="CreateEvent.aspx">Create Event</a></li>
+                                    <li><a href="CreateP_Type.aspx">Create Payment Type</a></li>
+                                    <li><a href="CreateVenue.aspx">Create Venue</a></li>                                    
                                 </ul>
                         </div>
                         </td>

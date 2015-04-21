@@ -83,14 +83,14 @@
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
-            <div id="Footer">
+<%--            <div id="Footer">
                 <p id="FooterTitle">
                     GO EVENTS
                 </p>
                 <p>
-                    BY CONTINUING PAST THIS PAGE, YOU AGREE TO OUR <a href="#" style="text-decoration: underline">TERM OF USE</a> .         
+                    BY CONTINUING PAST THIS PAGE, YOU AGREE TO OUR <a href="../TermofService.aspx" style="text-decoration: underline">TERM OF USE</a> .         
                 </p>
-            </div>
+            </div>--%>
         </div>
     </form>
 </body>

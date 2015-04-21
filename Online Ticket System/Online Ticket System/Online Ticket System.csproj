@@ -251,6 +251,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Style\StyleSheet.css" />
+    <Content Include="TermofService.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -428,6 +429,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="TermofService.aspx.cs">
+      <DependentUpon>TermofService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TermofService.aspx.designer.cs">
+      <DependentUpon>TermofService.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
