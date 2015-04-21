@@ -56,11 +56,11 @@
                                             <asp:GridView ID="CateGrid" runat="server" AutoGenerateColumns="False" CellPadding="4" DataSourceID="CateGridDataSource" GridLines="None" Width="700px" ValidationGroup="SCat" DataKeyNames="EventCategoryid" PageSize="5" OnRowCommand="CateGrid_RowCommand" OnRowUpdating="CateGrid_RowUpdating" ForeColor="#333333">
                                                 <AlternatingRowStyle BackColor="White" />
                                                 <Columns>
-                                                    <asp:BoundField DataField="EventCategoryid" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="EventCategoryid" HeaderStyle-Width="100px" ItemStyle-HorizontalAlign="Center">
+                                                    <asp:BoundField DataField="EventCategoryid" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="EventCategoryid" HeaderStyle-Width="100px" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
                                                         <HeaderStyle Width="100px" />
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:BoundField>
-                                                    <asp:TemplateField HeaderText="Category" SortExpression="Category">
+                                                    <asp:TemplateField HeaderText="Category" SortExpression="Category" HeaderStyle-HorizontalAlign="Center">
                                                         <EditItemTemplate>
                                                             <asp:DropDownList ID="CatlogID" runat="server" DataSourceID="SqlDataSource1" DataTextField="Name" DataValueField="EventCategoryID" SelectedValue='<%# Bind("Categoryid") %>'></asp:DropDownList>
                                                             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" SelectCommand="SELECT [EventCategoryID], [Name] FROM [tblEventCategory] WHERE ([ParentCategoryID] IS NULL)"></asp:SqlDataSource>

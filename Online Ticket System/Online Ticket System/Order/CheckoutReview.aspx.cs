@@ -189,6 +189,10 @@ namespace Online_Ticket_System.Order
                 }
                 else
                 {
+                    foreach (int i in removelist)
+                    {
+                        Connection.ChangeSeatStatus(i, "Available");
+                    }
                     Session["removelist"] = null;
                     Session["ticket"] = null;
                     Session["Cart"] = null;

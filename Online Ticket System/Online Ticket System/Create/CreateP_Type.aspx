@@ -22,7 +22,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <asp:Label ID="C_PTMess" runat="server" Font-Size="XX-Small" ForeColor="Red"></asp:Label></td>
+                                            <asp:Label ID="C_PTMess" runat="server" Font-Size="Medium" ForeColor="Red"></asp:Label></td>
                                     </tr>
                                     <tr>
                                         <td>

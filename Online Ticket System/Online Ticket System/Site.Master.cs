@@ -116,15 +116,17 @@ namespace Online_Ticket_System
                 {
                     cookie = Request.Cookies["UserInfo"];
                     Response.Cookies.Remove("UserInfo");
-                    cookie.Value = null;
-                    Response.SetCookie(cookie);
+                    cookie.Expires = DateTime.Now.AddDays(-1);
+                    Response.Cookies.Add(cookie);
+                    //cookie.Value = null;
+                    //Response.SetCookie(cookie);
                     lbSignIn.Text = "";
                     lbSignIn.Visible = false;
                     //lbRegister.Visible = true;
                     lbSignOut.Text = "(Log In/Register)";
                     //HttpCookie link = Request.Cookies["URL"];
                     string path = Session["currentURL"].ToString();
-                    if (path.Contains("/ManageAccount.aspx"))
+                    if (path.Contains("/ManageAccount.aspx") || path.Contains("/Order/"))
                     {
                         Response.Redirect("~/Default.aspx");
                     }
@@ -141,7 +143,7 @@ namespace Online_Ticket_System
         public void Search_Click(object sender, EventArgs e)
         {
             System.Collections.Specialized.NameValueCollection searchValue = Request.Form;
-            Response.Redirect("~/Display/E_SubCat.aspx?SerVal="+ searchValue["ctl00$SearchBox"].ToString());
+            Response.Redirect("~/Display/E_SubCat.aspx?SerVal=" + searchValue["ctl00$SearchBox"].ToString());
         }
         public void FillPage()
         {

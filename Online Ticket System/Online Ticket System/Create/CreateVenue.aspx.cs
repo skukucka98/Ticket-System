@@ -151,7 +151,7 @@ namespace Online_Ticket_System.Create
                 }
                 catch (Exception exc)
                 {
-                    venueOutput.Text = Server.MapPath("../Images/Seating Map/") + exc.ToString();
+                    venueOutput.Text = "Invalid Image";
                     venueOutput.ForeColor = Color.Red;
                     venueOutput.Visible = true;
                     return;

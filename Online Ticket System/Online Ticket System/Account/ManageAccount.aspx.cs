@@ -146,7 +146,8 @@ namespace Online_Ticket_System.Account
                 EditLogInfo.Visible = false;
                 DisAccInfor.Visible = true;
                 EditAccInfo.Visible = false;
-                //Update the Database
+                //Update the username
+                Response.Redirect(Request.RawUrl.ToString());
             }
         }
         private void RefreshAccInfo()
