@@ -11,9 +11,17 @@ namespace Online_Ticket_System.SignIn
 {
     public partial class ResetPassword : System.Web.UI.Page
     {
+        string id1;
+        string id2;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+                string url = Request.RawUrl.ToString();
+                id1 = url.Substring(url.IndexOf('?'), url.IndexOf('&') - url.IndexOf('?'));
+                id1 = id1.Substring(5, id1.Length - 5);
+                id2 = url.Substring(url.IndexOf('&'), url.Length - (url.IndexOf('&')));
+                id2 = id2.Substring(5, id2.Length - 5);
+                if (Request.QueryString["id1"] == null || Request.QueryString["id2"] == null || Connection.GetUserbyUsernameandPassword(Connection.Decrypt(id1), Connection.Decrypt(id2)).Count == 0)
+                    Response.Redirect("../default.aspx");
         }
 
         protected void RePaSubmit_Click(object sender, EventArgs e)
@@ -32,7 +40,7 @@ namespace Online_Ticket_System.SignIn
             }
             else
             {
-                Connection.UpdatePassbyUnameEmail(Connection.Decrypt(Request.QueryString["id1"]), Connection.Decrypt(Request.QueryString["id2"]), RePass.Text);
+                Connection.UpdatePassbyUnameEmail(Connection.Decrypt(id1), Connection.Decrypt(id2), RePass.Text);
                 RePaMessage.Text = "Successfully reset your password";
                 HttpCookie cookie = new HttpCookie("UserInfo");
                 ArrayList Userlist = Connection.GetUserbyUsernameandPassword(Connection.Decrypt(Request.QueryString["id1"]), RePass.Text);

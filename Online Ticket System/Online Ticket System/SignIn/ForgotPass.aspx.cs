@@ -53,7 +53,7 @@ namespace Online_Ticket_System.SignIn
                     string pass = Connection.pass(FGPaUsername.Text, FGPaEmail.Text);
                     string encryptpas = Connection.Encrypt(pass);
                    // string password = Membership.GeneratePassword(15, 0);
-                    string link = string.Format("http://goevent.info/SignIn/ResetPassword.aspx?id1={0}&id2={1}", encryptunm, encryptpas);
+                    string link = string.Format("http://localhost:51341/SignIn/ResetPassword.aspx?id1={0}&id2={1}", encryptunm, encryptpas);
                     MailMessage mail = new MailMessage();
                     mail.From = new MailAddress("multiticket.some.com@gmail.com");
                     mail.To.Add(FGPaEmail.Text);

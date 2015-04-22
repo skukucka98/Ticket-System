@@ -133,22 +133,6 @@
                                     </table>
                                 </td>
                             </tr>
-                            <%--                            <tr>
-                                <td style="width: 200px; text-align: right">Seat level:</td>
-                                <td class="auto-style2" style="text-align: left">
-                                    <div>
-                                        Price
-                                        <asp:Label ID="lbPrice" runat="server"></asp:Label>
-                                    </div>
-                                </td>
-                            </tr>
-s                            <tr>
-                                <td></td>
-                                <td>
-                                    <div id="gridevent" runat="server">
-                                    </div>
-                                </td>
-                            </tr>--%>
                             <tr>
                                 <td style="width: 200px; text-align: right">Category:</td>
                                 <td style="width: 495px; text-align: left">
@@ -162,7 +146,6 @@ s                            <tr>
                                 <td style="width: 200px; text-align: right">Image:</td>
                                 <td style="width: 495px; text-align: left">
                                     <asp:FileUpload ID="FileUpload1" runat="server" />
-                                    <%--<asp:Button ID="btnUploadImage" runat="server" Text="Upload" OnClick="btnUploadImage_Click1" CssClass="CrEButt" />--%>
                                 </td>
 
                             </tr>
@@ -178,13 +161,13 @@ s                            <tr>
                             <tr>
                                 <td></td>
                                 <td style="text-align: left">
-                                    <asp:Button ID="buttonSave" runat="server" Text="Save" OnClick="buttonSave_Click" ValidationGroup="AddEvent" CssClass="CrEButt" Height="40px" />
+                                    <asp:Label ID="lbOutPut" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td style="text-align: left">
-                                    <asp:Label ID="lbOutPut" runat="server"></asp:Label>
+                                    <asp:Button ID="buttonSave" runat="server" Text="Save" OnClick="buttonSave_Click" ValidationGroup="AddEvent" CssClass="CrEButt" Height="40px" />
                                 </td>
                             </tr>
                         </table>

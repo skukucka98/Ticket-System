@@ -247,15 +247,6 @@ namespace Online_Ticket_System.Create {
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
         
         /// <summary>
-        /// buttonSave control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button buttonSave;
-        
-        /// <summary>
         /// lbOutPut control.
         /// </summary>
         /// <remarks>
@@ -263,6 +254,15 @@ namespace Online_Ticket_System.Create {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbOutPut;
+        
+        /// <summary>
+        /// buttonSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button buttonSave;
         
         /// <summary>
         /// UpdatePanel1 control.

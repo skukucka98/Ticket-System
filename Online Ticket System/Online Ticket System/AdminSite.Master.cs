@@ -58,8 +58,10 @@ namespace Online_Ticket_System.Create
                 {
                     cookie = Request.Cookies["UserInfo"];
                     Response.Cookies.Remove("UserInfo");
-                    cookie.Value = null;
-                    Response.SetCookie(cookie);
+                    cookie.Expires = DateTime.Now.AddDays(-1);
+                    Response.Cookies.Add(cookie);
+                    //cookie.Value = null;
+                    //Response.SetCookie(cookie);
                     lbSignIn.Text = "";
                     lbSignIn.Visible = false;
                     lbSignOut.Text = "(LogIn)";

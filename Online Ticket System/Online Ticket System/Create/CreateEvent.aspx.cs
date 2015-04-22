@@ -196,12 +196,11 @@ namespace Online_Ticket_System.Create
                 {
                     //  string sstatus = "Available";
                     filename = Path.GetFileName(FileUpload1.FileName);
-                    FileUpload1.SaveAs(Server.MapPath("~/Images/Events/") + filename);
-                    
+                    FileUpload1.SaveAs(Server.MapPath("~/Images/Events/") + filename);                    
                 }
                 catch (Exception)
                 {
-                    lbOutPut.Text = "Upload Failed!";
+                    lbOutPut.Text = "Please upload the Image!";
                     lbOutPut.ForeColor = Color.Red;
                     lbPrice.Text = "";
                     return;
@@ -269,6 +268,7 @@ namespace Online_Ticket_System.Create
                         }
 
                         lbOutPut.Text = "Upload successful!";
+                        lbOutPut.ForeColor = Color.Blue;
                         ClearTextFields();
                         GridView1.DataBind();
                         Session["SeatLeveltable"] = null;
@@ -278,6 +278,7 @@ namespace Online_Ticket_System.Create
                     catch (Exception exc)
                     {
                         lbOutPut.Text = "Upload failed!";
+                        lbOutPut.ForeColor = Color.Red;
                     }
                 }
             }
