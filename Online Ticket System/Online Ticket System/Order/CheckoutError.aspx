@@ -10,7 +10,12 @@
                 <div>
                     <table style="margin-left: auto; margin-right: auto; width:700px; text-align:center">
                         <tr>
-                            <th id="ManTitle" style="background-color: black; color: white">InValid Order</th>
+                            <th id="ManTitle" style="background-color: black; color: white">Checkout Error</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="Checkoutmess" runat="server" Text="Invalid Order" ForeColor="Red"></asp:Label>
+                            </td>
                         </tr>
                         <tr>
                             <td>

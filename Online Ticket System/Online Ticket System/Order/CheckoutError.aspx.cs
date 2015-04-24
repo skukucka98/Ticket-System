@@ -11,7 +11,10 @@ namespace Online_Ticket_System.Order
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Request.QueryString["token"] == "1")
+            {
+                Checkoutmess.Text = "Session Timeout.";
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)

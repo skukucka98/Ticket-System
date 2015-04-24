@@ -1060,7 +1060,7 @@ namespace Online_Ticket_System.CSharpCode
         }
 
         public static void ChangeSeatStatus(int id, string status){
-            string query = string.Format("Update tblvenueseat set status = '{1}' from tblvenueseat where seatid = {0}", id,status);
+            string query = string.Format("Update tblvenueseat set status = '{1}' , changeddate = getdate() from tblvenueseat where seatid = {0}", id, status);
             cmd.CommandText = query;
             try
             {

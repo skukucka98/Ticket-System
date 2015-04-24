@@ -17,13 +17,14 @@ namespace Online_Ticket_System.Order
         private List<int> removelist;
         private double totalcost;
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {            
             if (!IsPostBack)
             {
-                //DisplayOrderDetail();
                 DisplayTicketDetail();
                 totalcost = 0;
             }
+            if (!SM1.IsInAsyncPostBack)
+                Session["timeout"] = DateTime.Now.AddMinutes(1).ToString();
         }
         
         private void DisplayTicketDetail()
@@ -341,5 +342,31 @@ namespace Online_Ticket_System.Order
         //        //}
         //    }
         //}
+
+        protected void timer1_tick(object sender, EventArgs e)
+        {
+            if (0 > DateTime.Compare(DateTime.Now,
+            DateTime.Parse(Session["timeout"].ToString())))
+            {
+                lblTimer.Text = "Number of Minutes Left: " +
+                ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).TotalMinutes).ToString("00")
+                + ":" +
+                ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Seconds).ToString("00");
+            }
+            else
+            {                
+                List<int> ids = new List<int>();
+                Cart cart = (Cart)Session["Cart"];
+                ids = cart.getList();
+                foreach (int i in ids)
+                {
+                    Connection.ChangeSeatStatus(i, "Available");
+                }
+                Session["removelist"] = null;
+                Session["ticket"] = null;
+                Session["Cart"] = null;
+                Response.Redirect("./CheckoutError.aspx?token=1");
+            }
+        }  
     }
 }

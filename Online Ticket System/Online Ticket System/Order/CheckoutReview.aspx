@@ -8,6 +8,24 @@
             <td id="LeftContent"></td>
             <td id="CenterContent">
                 <div id="ManTitle">Checkout Review</div>
+                <div>
+                    <asp:ScriptManager ID="SM1" runat="server"></asp:ScriptManager>
+                    <asp:Timer ID="timer1" runat="server"
+                        Interval="1000" OnTick="timer1_tick">
+                    </asp:Timer>
+                </div>
+
+                <div style="margin-bottom:20px">
+                    <asp:UpdatePanel ID="updPnl"
+                        runat="server" UpdateMode="Conditional">
+                        <ContentTemplate>
+                            <asp:Label ID="lblTimer" runat="server" ForeColor="red"></asp:Label>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="timer1" EventName="tick" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                </div>
                 <div style="border: solid thin; border-color: blue; margin-bottom: 20px;">
                     <div style="font-weight: bolder; font-size: large; background-color: darkblue; color: white">Ticket Ordered:</div>
                     <%-- <asp:GridView ID="orderlist" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" Width="800px">
@@ -92,7 +110,7 @@
                     <SortedDescendingCellStyle BackColor="#E9EBEF" />
                     <SortedDescendingHeaderStyle BackColor="#4870BE" />
                 </asp:GridView>--%>
-                    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+                    <%--<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>--%>
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
                             <div>
@@ -179,12 +197,12 @@
                         </asp:SqlDataSource>
                     </div>
                     <div>
-                        <table style="width:700px">
+                        <table style="width: 700px">
                             <tr>
-                                <th  style="text-align:left">Payment Type:</th>
-                                <th  style="text-align:left">Credit Cart No:</th>
-                                <th  style="text-align:left">Cardholder's Name:</th>
-                                <th colspan="2"  style="text-align:left">Exp. Date:</th>
+                                <th style="text-align: left">Payment Type:</th>
+                                <th style="text-align: left">Credit Cart No:</th>
+                                <th style="text-align: left">Cardholder's Name:</th>
+                                <th colspan="2" style="text-align: left">Exp. Date:</th>
                             </tr>
                             <tr>
                                 <td>
@@ -197,7 +215,7 @@
                                 <td>
                                     <asp:TextBox ID="Holdername" runat="server" CssClass="btnstandard" Width="170px" Height="30px"></asp:TextBox>
                                 </td>
-                                <td  style="width:20px">
+                                <td style="width: 20px">
                                     <asp:DropDownList ID="expmonth" runat="server" CssClass="btnstandard" Height="35px" Width="50px">
                                         <asp:ListItem>1</asp:ListItem>
                                         <asp:ListItem>2</asp:ListItem>
@@ -211,7 +229,7 @@
                                         <asp:ListItem>10</asp:ListItem>
                                         <asp:ListItem>11</asp:ListItem>
                                         <asp:ListItem>12</asp:ListItem>
-                                        
+
                                     </asp:DropDownList>
                                 </td>
                                 <td>
@@ -228,7 +246,7 @@
                         </table>
                     </div>
                 </div>
-                <div style="text-align: right; margin-right: 50px; margin-bottom:20px">
+                <div style="text-align: right; margin-right: 50px; margin-bottom: 20px">
                     <asp:Button ID="MakePayment" runat="server" Text="Checkout" CssClass="btnstandard" ForeColor="White" BackColor="Green" Width="100px" Height="40px" OnClick="MakePayment_Click" />
                 </div>
             </td>
