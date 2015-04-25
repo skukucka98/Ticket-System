@@ -14,7 +14,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label ID="Checkoutmess" runat="server" Text="Invalid Order" ForeColor="Red"></asp:Label>
+                                <asp:Label ID="Checkoutmess" runat="server" Text="Invalid Order" ForeColor="Yellow"></asp:Label>
                             </td>
                         </tr>
                         <tr>

@@ -116,7 +116,11 @@ namespace Online_Ticket_System.Account
 
         protected void EditAccSave_Click(object sender, EventArgs e)
         {
-            if (!(EditAccZip.Text.Length == 5) || !EditAccZip.Text.All(char.IsDigit))
+            if (!Regex.IsMatch(EditAccCity.Text, @"^[a-zA-Z ]+$"))
+            {
+                EditAccMess.Text = "Invalid City.";
+            }
+            else if (!(EditAccZip.Text.Length == 5) || !EditAccZip.Text.All(char.IsDigit))
             {
                 EditAccMess.Text = "Invalid Zipcode";
             }
@@ -124,8 +128,7 @@ namespace Online_Ticket_System.Account
             {
                 EditAccMess.Text = "Invalid Phone Number.";
             }
-
-            else if (IsValidEmail(EditAccEmail.Text) == false)
+            else if (!Regex.IsMatch(EditAccEmail.Text, @"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$"))
             {
                 EditAccMess.Text = "Invalid Email Address";
             }

@@ -177,9 +177,8 @@
                                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                     <ContentTemplate>
                                         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"
-                                            CellPadding="4" DataSourceID="SqlDataSource1" ForeColor="#333333"
-                                            GridLines="None" DataKeyNames="Eventid" OnSelectedIndexChanging="GridView1_SelectedIndexChanging">
-                                            <AlternatingRowStyle BackColor="White" />
+                                            CellPadding="4" DataSourceID="SqlDataSource1"
+                                            GridLines="Horizontal" DataKeyNames="Eventid" OnSelectedIndexChanging="GridView1_SelectedIndexChanging" AllowSorting="True" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="Event Name" SortExpression="Name" ControlStyle-Width="300px" ItemStyle-HorizontalAlign="Left">
                                                     <EditItemTemplate>
@@ -210,23 +209,24 @@
                                                 </asp:TemplateField>
                                                 <asp:BoundField DataField="EventDate" HeaderText="EventDate" SortExpression="EventDate" DataFormatString="{0:d}" />
                                                 <asp:BoundField DataField="EventTime" HeaderText="EventTime" SortExpression="EventTime" />
-                                                <asp:BoundField DataField="Status" HeaderText="Status" ItemStyle-Width="200px" />
+                                                <asp:BoundField DataField="Status" HeaderText="Status" ItemStyle-Width="200px" >
+                                                <ItemStyle Width="200px" />
+                                                </asp:BoundField>
                                                 <asp:TemplateField HeaderText="Manage" ShowHeader="False">
                                                     <ItemTemplate>
                                                         <asp:Button ID="Button1" runat="server" CausesValidation="False" CommandName="Select" Text="Detail" CssClass="btnstandard" Width="75" Height="35" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>
-                                            <EditRowStyle BackColor="#7C6F57" />
-                                            <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                                            <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                                            <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-                                            <RowStyle BackColor="#E3EAEB" />
-                                            <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
-                                            <SortedAscendingCellStyle BackColor="#F8FAFA" />
-                                            <SortedAscendingHeaderStyle BackColor="#246B61" />
-                                            <SortedDescendingCellStyle BackColor="#D4DFE1" />
-                                            <SortedDescendingHeaderStyle BackColor="#15524A" />
+                                            <FooterStyle BackColor="White" ForeColor="#333333" />
+                                            <HeaderStyle BackColor="#336666" Font-Bold="True" ForeColor="White" />
+                                            <PagerStyle BackColor="#336666" ForeColor="White" HorizontalAlign="Center" />
+                                            <RowStyle BackColor="White" ForeColor="#333333" />
+                                            <SelectedRowStyle BackColor="#339966" Font-Bold="True" ForeColor="White" />
+                                            <SortedAscendingCellStyle BackColor="#F7F7F7" />
+                                            <SortedAscendingHeaderStyle BackColor="#487575" />
+                                            <SortedDescendingCellStyle BackColor="#E5E5E5" />
+                                            <SortedDescendingHeaderStyle BackColor="#275353" />
                                         </asp:GridView>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
@@ -379,10 +379,11 @@
                                                     <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:TicketDBConnectionString %>" DeleteCommand="UPDATE dbo.tblEvent SET isActive = 0
 WHERE (EventID = @EventID)"
                                                         SelectCommand="SELECT EventID, e.Name, EventDate, EventTime, v.name as Venue, c.name as SubCategory, e.Description, e.status , e.[picture]
-FROM dbo.tblEvent e
+                                                                                                FROM dbo.tblEvent e
                                                                                                 INNER JOIN dbo.tblVenue v on v.Venueid = e.Venueid 
                                                                                                 INNER JOIN dbo.tblEventCategory c on c.EventCategoryid = e.Categoryid
-                                                                                                WHERE (EventID = @EventID)"
+                                                                                                WHERE (EventID = @EventID)
+                                                                                                order by EventID desc"
                                                         UpdateCommand="UPDATE dbo.tblEvent SET Name = @Name
                                                                         , EventDate = @EventDate
                                                                         , EventTime = @EventTime

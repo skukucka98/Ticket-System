@@ -348,13 +348,17 @@ namespace Online_Ticket_System.Order
             if (0 > DateTime.Compare(DateTime.Now,
             DateTime.Parse(Session["timeout"].ToString())))
             {
-                lblTimer.Text = "Number of Minutes Left: " +
+                lblTimer.Text = "These tickets held for: " +
                 ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).TotalMinutes).ToString("00")
                 + ":" +
                 ((Int32)DateTime.Parse(Session["timeout"].ToString()).Subtract(DateTime.Now).Seconds).ToString("00");
             }
             else
-            {                
+            {
+                if (Session["Cart"] == null)
+                {
+                    Response.Redirect("./CheckoutError.aspx");
+                }
                 List<int> ids = new List<int>();
                 Cart cart = (Cart)Session["Cart"];
                 ids = cart.getList();

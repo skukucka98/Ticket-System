@@ -182,7 +182,7 @@ namespace Online_Ticket_System.Create
 
         protected void buttonSave_Click(object sender, EventArgs e)
         {
-            DateTime getdate = DateTime.Parse(txtEventDate.Text);
+            
             if (Session["SeatLeveltable"] == null)
             {
                 this.Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('Price is missing from the Seat Level. Please enter the price and try it again.')", true);
@@ -221,7 +221,8 @@ namespace Online_Ticket_System.Create
                     lbOutPut.ForeColor = Color.Red;
                     lbPrice.Text = "";
                 }
-                    else if (getdate <= DateTime.Now){
+                else if (DateTime.Parse(txtEventDate.Text) <= DateTime.Now)
+                {
                         lbOutPut.Text = "Event date must be after the current date";
                         lbOutPut.ForeColor = Color.Red;
                         lbPrice.Text = "";

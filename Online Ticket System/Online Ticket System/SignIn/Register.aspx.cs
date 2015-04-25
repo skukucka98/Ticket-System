@@ -45,23 +45,32 @@ namespace Online_Ticket_System.SignIn
             {
                 PassVal.Text = "Required at least 1 number";
             }
-            else if (!(ZipcodeBox.Text.Length == 5) ||!ZipcodeBox.Text.All(char.IsDigit))
+            else if (!Regex.IsMatch(CityBox.Text, @"^[a-zA-Z ]+$"))
             {
+                PassVal.Text = "";
+                RegMes.Text = "Invalid City.";
+            }
+            else if (!(ZipcodeBox.Text.Length == 5) || !ZipcodeBox.Text.All(char.IsDigit))
+            {
+                PassVal.Text = "";
                 RegMes.Text = "Invalid Zipcode";
             }
-            else if (!Regex.IsMatch(PhoneBox.Text,@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"))
+            else if (!Regex.IsMatch(PhoneBox.Text, @"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$"))
             {
+                PassVal.Text = "";
                 RegMes.Text = "Invalid Phone Number.";
             }
 
-            else if (IsValidEmail(EmailBox.Text)==false)
+            else if (!Regex.IsMatch(EmailBox.Text, @"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$"))
             {
-                    RegMes.Text = "Invalid Email Address";
+                PassVal.Text = "";
+                RegMes.Text = "Invalid Email Address";
             }
             else
             {
                 if (Connection.CheckUserExist(UsernameReg.Text) != 0)
                 {
+                    PassVal.Text = "";
                     RegMes.Text = "Username already exists!";
                 }
                 else
@@ -102,7 +111,7 @@ namespace Online_Ticket_System.SignIn
                             Response.Cookies.Add(cookie);
                             Response.Redirect("~/Default.aspx");
                         }
-                    }                    
+                    }
                 }
             }
         
